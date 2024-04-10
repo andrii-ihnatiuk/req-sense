@@ -1,0 +1,52 @@
+<div class="page-container">
+  <div class="page-left">
+    <div class="page-left__title">ReqSense helps<br />gather requirements</div>
+    <div class="page-left__subtitle">Manage requirements with AI assistance</div>
+  </div>
+  <div class="page-right">
+    <div class="page-right__logo">ReqSense</div>
+    <div class="form-wrapper">
+      <form *ngIf="!!form" class="form" [formGroup]="form">
+        <div class="form__title">Registration</div>
+        <mat-form-field class="form__field_fw">
+          <mat-label>Name</mat-label>
+          <input type="text" matInput [formControl]="getControl('name')" placeholder="Your name goes here">
+          @if (getControl('name').hasError('minlength') && !getControl('name').hasError('required')) {
+          <mat-error>The min name length is {{ getControl('name').errors!['minlength'].requiredLength }}</mat-error>
+          }
+          @if (getControl('name').hasError('required')) {
+          <mat-error>User name is <strong>required</strong></mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="form__field_fw">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput [formControl]="getControl('email')" placeholder="Enter your email here">
+          @if (getControl('email').hasError('email') && !getControl('email').hasError('required')) {
+          <mat-error>Please enter a valid email address</mat-error>
+          }
+          @if (getControl('email').hasError('required')) {
+          <mat-error>Email is <strong>required</strong></mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="form__field_fw">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput [formControl]="getControl('password')" placeholder="Enter your password here">
+          @if (getControl('password').hasError('required')) {
+          <mat-error>Password is <strong>required</strong></mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="form__field_fw">
+          <mat-label>Repeat the password</mat-label>
+          <input type="password" matInput [formControl]="getControl('confirmPassword')" placeholder="Confirm password">
+          @if (this.form.errors?.['passwordMismatch']) {
+          <mat-error *ngIf="this.form?.errors?.['passwordMismatch']">Passwords do not match!</mat-error>
+          }
+        </mat-form-field>
+        <button mat-stroked-button color="primary" class="form__button form__field_fw" type="button" (click)="register()">Create account</button>
+        <div class="form__link-wrapper">
+          <a routerLink="/account/login">Sign in instead</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

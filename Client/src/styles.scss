@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+    --primary: rgb(63, 81, 181);
+    --secondary: rgb(254, 195, 0);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+a {
+  color: #1e1e1e;
+  font-size: 16px;
+  line-height: 18px;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
