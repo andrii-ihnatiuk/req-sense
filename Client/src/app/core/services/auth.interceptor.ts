@@ -21,6 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     if (error.status === HttpStatusCode.Unauthorized) {
+      this.authService.logout();
       this.router.navigate(['account/login']);
     }
 

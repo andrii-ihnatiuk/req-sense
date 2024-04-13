@@ -1,0 +1,30 @@
+.input-container {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: var(--bg-secondary);
+
+  input {
+    -webkit-font-smoothing: antialiased;
+    font: inherit;
+    border: none;
+    padding: 0 2px;
+    background-color: transparent;
+
+    &::placeholder {
+      color: var(--text-dimmed);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  mat-icon {
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+    padding: 0 2px;
+  }
+}

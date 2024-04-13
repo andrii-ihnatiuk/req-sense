@@ -1,0 +1,7 @@
+<app-card *ngIf="!!model" [routerLink]="model.link">
+  <div class="card__header">
+    <mat-icon *ngIf="!!model.icon" class="card__icon">{{ model.icon }}</mat-icon>
+    <span class="card__title">{{ model.title }}</span>
+  </div>
+  <div class="card__subtitle">{{ model.subtitle }}</div>
+</app-card>

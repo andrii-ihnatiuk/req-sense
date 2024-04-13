@@ -1,0 +1,20 @@
+.card__header {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card__icon {
+  color: var(--primary);
+  margin-right: 8px;
+}
+
+.card__subtitle {
+  margin-top: 25px;
+  color: var(--text-dimmed);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

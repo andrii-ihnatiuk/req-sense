@@ -1,1 +1,48 @@
-<p>projects works!</p>
+<div class="content-section">
+  <h1>Your projects</h1>
+  <div class="projects">
+    <ng-container *ngFor="let project of projects">
+      <app-card [routerLink]="'/projects/12'">
+        <ng-container
+          [ngTemplateOutlet]="projectCard"
+          [ngTemplateOutletContext]="{ $implicit: project }"
+          ></ng-container>
+      </app-card>
+    </ng-container>
+    <div class="create-new">
+      <div class="create-new__border"></div>
+    </div>
+  </div>
+</div>
+
+<div class="content-section">
+  <h1>Projects you participate in</h1>
+  <div class="projects">
+    <ng-container *ngFor="let project of projects">
+      <app-card [routerLink]="'/projects/hello'">
+        <ng-container
+          [ngTemplateOutlet]="projectCard"
+          [ngTemplateOutletContext]="{ $implicit: project }"
+          ></ng-container>
+      </app-card>
+    </ng-container>
+  </div>
+</div>
+
+
+<ng-template #projectCard let-project>
+  <div class="card__header">
+    <span class="card__title">{{ project.title }}</span>
+  </div>
+  <div class="card__subtitle">{{ project.description }}</div>
+  <div class="card-footer">
+    <div class="card-footer__item">
+      <mat-icon class="card-footer__icon">shield_person</mat-icon>
+      <span>{{ project.owner }}</span>
+    </div>
+    <div class="card-footer__item">
+      <mat-icon class="card-footer__icon">groups</mat-icon>
+      <span>{{ project.membersCount }} team members</span>
+    </div>
+  </div>
+</ng-template>

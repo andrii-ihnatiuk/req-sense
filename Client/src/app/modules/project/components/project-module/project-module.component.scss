@@ -1,0 +1,19 @@
+.container-split {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  background-color: var(--bg);
+}
+
+.sidebar-wrapper {
+  width: 20%;
+  max-width: 320px;
+}
+
+.main {
+  width: 100%;
+}
+
+.content-container {
+  padding: 50px;
+}

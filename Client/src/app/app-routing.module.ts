@@ -11,7 +11,12 @@ const routes: Routes = [
   {
     path: 'account',
     loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule),
-  }
+  },
+  {
+    path: 'projects/:id',
+    loadChildren: () => import('./modules/project/project.module').then(m =>m.ProjectModule),
+  },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

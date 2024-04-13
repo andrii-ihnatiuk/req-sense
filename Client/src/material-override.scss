@@ -1,0 +1,25 @@
+// mat-form-field.mat-mdc-form-field {
+//   font-size: 12px;
+
+//   mat-icon {
+
+//   }
+// }
+
+:root {
+  --mat-form-field-container-vertical-padding: 5px;
+  --mat-filled-button-ripple-color: var(--ripple) !important;
+
+  --mat-text-button-ripple-color: var(--ripple) !important;
+  --mat-text-button-state-layer-color: var(--primary) !important;
+  --mat-text-button-hover-state-layer-opacity: 0.1 !important;
+
+  --mdc-outlined-button-outline-color: var(--primary) !important;
+  --mat-outlined-button-state-layer-color: var(--primary) !important;
+  --mat-outlined-button-ripple-color: var(--ripple) !important;
+  --mat-outlined-button-hover-state-layer-opacity: 0.1 !important;
+}
+
+.mdc-button.mat-mdc-button, .mat-mdc-outlined-button {
+  color: var(--primary) !important;
+}

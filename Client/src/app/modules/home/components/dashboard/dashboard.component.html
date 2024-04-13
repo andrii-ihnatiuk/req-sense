@@ -1,0 +1,23 @@
+<section class="content-section greeting-section">
+  <h1>Welcome to ReqSense!</h1>
+  <p>ReqSense is designed to help you gather requirements more effiently with the help of modern AI technologies.</p>
+  <div class="greeting-buttons">
+    <button mat-flat-button color="primary" style="margin-right: 19px;">Take a tour</button>
+    <button mat-button color="primary">Learn about new features</button>
+  </div>
+</section>
+<section class="content-section">
+  <h1>Continue where you left off</h1>
+
+  <div class="user-activity">
+    <ng-container *ngFor="let card of cards">
+      <app-activity-card [model]="card"></app-activity-card>
+    </ng-container>
+  </div>
+
+</section>
+<section class="no-activity-section">
+  <img src="assets/images/flag.png" class="no-activity__image" alt="flag" draggable="false">
+  <h2 class="no-activity__title">No more activity</h2>
+<p class="no-activity__subtitle">Come back later for more updates</p>
+</section>
