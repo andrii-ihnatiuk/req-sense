@@ -1,9 +1,35 @@
-<section class="content-section">
-  <h1>Automate.life</h1>
-  <p>This project aims to help other users perform their daily tasks more productively. Our goal is to automate most of the user's repetitive tasks.</p>
-  <button mat-stroked-button>Go to settings</button>
-</section>
-<section class="content-section">
-  <h1>Project members</h1>
-  <app-members-list></app-members-list>
-</section>
+<div class="page-container">
+  <div class="page-left">
+    <section class="content-section">
+      <h1>Automate.life</h1>
+      <p>This project aims to help other users perform their daily tasks more productively. Our goal is to automate most of the user's repetitive tasks.</p>
+      <button mat-stroked-button>Go to settings</button>
+    </section>
+    <section class="content-section">
+      <h1>Project members</h1>
+      <app-members-list></app-members-list>
+      <div class="members-actions">
+        <button mat-stroked-button>
+          <mat-icon>person_add</mat-icon>
+          Invite member
+        </button>
+        <button mat-button>
+          View all
+        </button>
+      </div>
+    </section>
+  </div>
+  <div class="page-right">
+    <h2>Insights</h2>
+    <div class="insights-container">
+      <div class="insights-card">
+        <div class="insights-card__title">12</div>
+        <div class="insights-card__subtitle">Requirements gathered this week</div>
+      </div>
+      <div class="insights-card">
+        <div class="insights-card__title">24</div>
+        <div class="insights-card__subtitle">Total requirements</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -20,6 +20,16 @@ export class ProjectModuleComponent {
       title: 'Requirements',
       icon: 'article',
       link: 'requirements'
+    },
+    {
+      title: 'Discussions',
+      icon: 'forum',
+      link: 'discussions'
+    },
+    {
+      title: 'Project settings',
+      icon: 'settings',
+      link: 'settings'
     }
   ]
 

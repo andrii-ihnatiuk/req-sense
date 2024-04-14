@@ -18,6 +18,16 @@ export class HomeComponent {
       title: 'Projects',
       icon: 'stacks',
       link: '/projects'
+    },
+    {
+      title: 'Subscriptions',
+      icon: 'new_releases',
+      link: '/subscriptions'
+    },
+    {
+      title: 'Notifications',
+      icon: 'notifications',
+      link: '/notifications'
     }
   ];
 }
