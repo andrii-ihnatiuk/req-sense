@@ -1,0 +1,10 @@
+<div class="list-header">
+  <div class="list-header__label">Title</div>
+  <div class="list-header__label">Created</div>
+  <div class="list-header__label">Actions</div>
+</div>
+<div class="list-body">
+  <ng-container *ngFor="let item of listItems">
+    <app-requirements-list-item [model]="item"></app-requirements-list-item>
+  </ng-container>
+</div>

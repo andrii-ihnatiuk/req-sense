@@ -1,1 +1,24 @@
-<p>requirements works!</p>
+<section class="content-section">
+  <h1>Project requirements</h1>
+  <p>At this page you can see all requirements for your projects. Collaborate with others and strive to success!</p>
+</section>
+<section class="content-section">
+  <div class="actions">
+    <div class="actions-left">
+      <app-select style="margin-right: 15px;"
+        [options]="options"
+        [value]="options[0].value"
+        ></app-select>
+      <button mat-stroked-button>Add requirement</button>
+    </div>
+    <div class="actions-right">
+      <app-input
+        [icon]="'search'"
+        [placeholder]="'Search by title'"
+      ></app-input>
+    </div>
+  </div>
+  <div class="requirements-list-wrapper">
+    <app-requirements-list></app-requirements-list>
+  </div>
+</section>

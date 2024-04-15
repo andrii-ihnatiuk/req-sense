@@ -3,10 +3,10 @@ import { MenuItem } from 'src/app/core/models/MenuItem';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  templateUrl: './home-module.component.html',
+  styleUrl: './home-module.component.scss'
 })
-export class HomeComponent {
+export class HomeModuleComponent {
 
   sideBarMenuItems: MenuItem[] = [
     {

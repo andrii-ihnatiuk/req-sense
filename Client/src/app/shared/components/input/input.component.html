@@ -1,4 +1,4 @@
 <div class="input-container">
-  <mat-icon>search</mat-icon>
+  <mat-icon *ngIf="!!icon">{{ icon }}</mat-icon>
   <input [type]="type" [placeholder]="placeholder" [value]="value">
 </div>

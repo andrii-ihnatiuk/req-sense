@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Role } from 'src/app/core/constants/role';
-import { ProjectMember } from 'src/app/core/models/ProjectMember';
+import { MemberListItem } from '../members-list-item/MemberListItem';
 
 @Component({
   selector: 'app-members-list',
@@ -10,7 +10,14 @@ import { ProjectMember } from 'src/app/core/models/ProjectMember';
 export class MembersListComponent {
 
   @Input()
-  listItems: ProjectMember[] = [
+  listItems: MemberListItem[] = [
+    {
+      id: '',
+      name: 'Andrii Ihnatiuk',
+      email: 'andrey@gmail.com',
+      joinedDate: '2002-11-23',
+      role: Role.MEMBER,
+    },
     {
       id: '',
       name: 'Andrii Ihnatiuk',

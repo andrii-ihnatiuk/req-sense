@@ -2,7 +2,7 @@
   <h1>Your projects</h1>
   <div class="projects">
     <ng-container *ngFor="let project of projects">
-      <app-card [routerLink]="'/projects/12'">
+      <app-card [routerLink]="'/projects/12'" class="projects__card">
         <ng-container
           [ngTemplateOutlet]="projectCard"
           [ngTemplateOutletContext]="{ $implicit: project }"
@@ -14,7 +14,6 @@
     </div>
   </div>
 </div>
-
 <div class="content-section">
   <h1>Projects you participate in</h1>
   <div class="projects">
@@ -28,7 +27,6 @@
     </ng-container>
   </div>
 </div>
-
 
 <ng-template #projectCard let-project>
   <div class="card__header">

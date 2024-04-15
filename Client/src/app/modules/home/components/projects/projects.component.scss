@@ -1,11 +1,16 @@
 .content-section {
-  margin-bottom: 70px;
+  margin-bottom: 50px;
 }
 
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: 1fr;
   gap: 20px;
+}
+
+.projects__card {
+  height: 128px;
 }
 
 .card__header {

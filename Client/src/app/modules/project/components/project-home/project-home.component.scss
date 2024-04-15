@@ -1,6 +1,7 @@
 .page-container {
   display: flex;
-  gap: 100px;
+  flex-wrap: wrap;
+  gap: 50px;
 
   .page-left {
     flex: 2;
@@ -12,7 +13,7 @@
 }
 
 .content-section {
-  margin-bottom: 70px;
+  margin-bottom: 50px;
 }
 
 .members-actions {

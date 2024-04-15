@@ -8,6 +8,8 @@ import { RequirementsComponent } from './components/requirements/requirements.co
 import { ProjectModuleComponent } from './components/project-module/project-module.component';
 import { MembersListComponent } from './components/members-list/members-list.component';
 import { MembersListItemComponent } from './components/members-list-item/members-list-item.component';
+import { RequirementsListComponent } from './components/requirements-list/requirements-list.component';
+import { RequirementsListItemComponent } from './components/requirements-list-item/requirements-list-item.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { MembersListItemComponent } from './components/members-list-item/members
         RequirementsComponent,
         ProjectModuleComponent,
         MembersListComponent,
-        MembersListItemComponent
+        MembersListItemComponent,
+        RequirementsListComponent,
+        RequirementsListItemComponent
     ],
     imports: [
         CommonModule,

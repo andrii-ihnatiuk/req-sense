@@ -1,0 +1,7 @@
+<div class="select-wrapper" (click)="openSelect()">
+  <mat-select #control [value]="value">
+    <mat-option *ngFor="let option of options" [value]="option.value">
+      {{ option.label }}
+    </mat-option>
+  </mat-select>
+</div>

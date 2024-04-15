@@ -1,0 +1,14 @@
+:host {
+  display: inline-block;
+  min-width: 130px;
+}
+
+.select-wrapper {
+  padding: 6px 8px;
+  background-color: var(--bg-secondary);
+  cursor: pointer;
+}
+
+mat-select {
+  font-size: 14px;
+}

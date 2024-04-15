@@ -1,11 +1,3 @@
-// mat-form-field.mat-mdc-form-field {
-//   font-size: 12px;
-
-//   mat-icon {
-
-//   }
-// }
-
 :root {
   --mat-form-field-container-vertical-padding: 5px;
   --mat-filled-button-ripple-color: var(--ripple) !important;
@@ -20,6 +12,40 @@
   --mat-outlined-button-hover-state-layer-opacity: 0.1 !important;
 }
 
-.mdc-button.mat-mdc-button, .mat-mdc-outlined-button {
+.mdc-button.mat-mdc-button:not(.mat-warn),
+.mat-mdc-outlined-button {
   color: var(--primary) !important;
+}
+
+
+.mat-mdc-option {
+  min-height: 36px !important;
+  font-size: 14px !important;
+
+  &.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+    color: var(--primary) !important;
+  }
+
+  .mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-checked::after,
+  .mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-indeterminate::after {
+    color: var(--primary);
+  }
+
+  .mat-pseudo-checkbox-minimal {
+    margin-left: 10px !important;
+  }
+}
+
+.mat-expansion-panel.account-panel {
+  border-radius: 10px !important;
+  background-color: var(--bg) !important;
+
+  .mat-expansion-panel-header {
+    border-radius: 10px !important;
+    padding: 0 15px !important;
+  }
+
+  .mat-expansion-panel-body {
+    padding: 0 15px 15px;
+}
 }

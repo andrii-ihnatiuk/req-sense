@@ -5,7 +5,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProjectsComponent } from './components/projects/projects.component';
-import { HomeComponent } from './components/home/home.component';
+import { HomeModuleComponent } from './components/home-module/home-module.component';
 import { ActivityCardComponent } from './components/activity-card/activity-card.component';
 
 
@@ -13,7 +13,7 @@ import { ActivityCardComponent } from './components/activity-card/activity-card.
   declarations: [
     DashboardComponent,
     ProjectsComponent,
-    HomeComponent,
+    HomeModuleComponent,
     ActivityCardComponent
   ],
   imports: [

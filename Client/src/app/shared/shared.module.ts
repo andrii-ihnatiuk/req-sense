@@ -12,8 +12,10 @@ import { RouterModule } from '@angular/router';
 import { CardComponent } from './components/card/card.component';
 import { InputComponent } from './components/input/input.component';
 import { MatRippleModule } from '@angular/material/core';
-import { MembersListComponent } from '../modules/project/components/members-list/members-list.component';
-import { MembersListItemComponent } from '../modules/project/components/members-list-item/members-list-item.component';
+import { MatSelectModule } from '@angular/material/select';
+import { SelectComponent } from './components/select/select.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { AccountExpandableComponent } from './components/account-expandable/account-expandable.component';
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import { MembersListItemComponent } from '../modules/project/components/members-
     SidebarItemComponent,
     CardComponent,
     InputComponent,
+    SelectComponent,
+    AccountExpandableComponent,
   ],
   imports: [
     CommonModule,
@@ -32,7 +36,9 @@ import { MembersListItemComponent } from '../modules/project/components/members-
     MatIconModule,
     FormsModule,
     MatButtonModule,
-    MatRippleModule
+    MatRippleModule,
+    MatSelectModule,
+    MatExpansionModule,
   ],
   exports: [
     RouterModule,
@@ -46,6 +52,10 @@ import { MembersListItemComponent } from '../modules/project/components/members-
     SidebarItemComponent,
     CardComponent,
     MatRippleModule,
+    InputComponent,
+    MatSelectModule,
+    SelectComponent,
+    AccountExpandableComponent
   ]
 })
 export class SharedModule { }

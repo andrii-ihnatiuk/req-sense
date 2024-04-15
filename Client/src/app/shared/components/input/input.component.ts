@@ -14,5 +14,8 @@ export class InputComponent {
   value: string = '';
 
   @Input()
+  icon?: string;
+
+  @Input()
   type: 'text' | 'number' = 'text';
 }
