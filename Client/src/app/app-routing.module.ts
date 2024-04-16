@@ -15,6 +15,7 @@ const routes: Routes = [
   {
     path: 'projects/:id',
     loadChildren: () => import('./modules/project/project.module').then(m =>m.ProjectModule),
+    canActivate: [authGuard],
   },
   { path: '**', redirectTo: '' }
 ];

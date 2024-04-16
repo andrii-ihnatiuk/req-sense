@@ -27,4 +27,10 @@ export class MembersListComponent {
     },
   ]
 
+  @Input()
+  withActions: boolean = false;
+
+  @Input()
+  withCardStyle: boolean = false;
+
 }

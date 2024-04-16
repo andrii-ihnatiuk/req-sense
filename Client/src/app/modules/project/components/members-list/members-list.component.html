@@ -4,6 +4,10 @@
 </div>
 <div class="list-body">
   <ng-container *ngFor="let item of listItems">
-    <app-members-list-item [model]="item"></app-members-list-item>
+    <app-members-list-item
+      [model]="item"
+      [cardStyle]="withCardStyle"
+      [showActions]="withActions"
+    ></app-members-list-item>
   </ng-container>
 </div>

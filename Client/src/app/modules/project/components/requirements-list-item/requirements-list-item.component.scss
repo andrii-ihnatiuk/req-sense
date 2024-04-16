@@ -1,6 +1,11 @@
 .list-item {
   display: flex;
   justify-content: space-between;
+  padding: 5px 0px;
+
+  &.padding-full {
+    padding: 5px;
+  }
 
   .details {
     flex: 1;
@@ -37,5 +42,6 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    color: var(--text-dimmed);
   }
 }

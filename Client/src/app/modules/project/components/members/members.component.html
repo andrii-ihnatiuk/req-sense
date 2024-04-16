@@ -1,0 +1,26 @@
+<section class="content-section">
+  <h1>Project members</h1>
+</section>
+<section class="content-section">
+  <div class="actions">
+    <div class="actions-left">
+      <app-select style="margin-right: 15px;"
+        [options]="options"
+        [value]="options[0].value"
+        ></app-select>
+      <button mat-stroked-button>
+        Invite member
+        <mat-icon>person_add</mat-icon>
+      </button>
+    </div>
+    <div class="actions-right">
+      <app-input
+        [icon]="'search'"
+        [placeholder]="'Search by name'"
+      ></app-input>
+    </div>
+  </div>
+  <div class="requirements-list-wrapper">
+    <app-members-list [withActions]="true" [withCardStyle]="true"></app-members-list>
+  </div>
+</section>

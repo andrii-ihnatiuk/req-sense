@@ -7,15 +7,8 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 })
 export class RequirementsComponent {
 
-  buttonText = 'SELECT';
-
   options = [
     { value: 'all', label: 'All' },
     { value: 'own', label: 'Own' }
   ];
-
-
-  onChange(value: string) {
-    this.buttonText = value || 'SELECT';
-  }
 }

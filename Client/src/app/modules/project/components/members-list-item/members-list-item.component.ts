@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { ProjectMember } from 'src/app/core/models/ProjectMember';
 import { MemberListItem } from './MemberListItem';
 
 @Component({
@@ -8,6 +7,12 @@ import { MemberListItem } from './MemberListItem';
   styleUrl: './members-list-item.component.scss'
 })
 export class MembersListItemComponent {
+
+  @Input()
+  cardStyle: boolean = true;
+
+  @Input()
+  showActions: boolean = true;
 
   @Input()
   model?: MemberListItem;

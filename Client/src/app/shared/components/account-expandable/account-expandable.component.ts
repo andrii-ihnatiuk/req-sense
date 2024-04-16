@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -8,11 +9,15 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class AccountExpandableComponent {
 
-  constructor(private auth: AuthService) {
+  constructor(
+    private auth: AuthService,
+    private router: Router
+  ) {
 
   }
 
   signOut(): void {
     this.auth.logout();
+    this.router.navigate(['']);
   }
 }

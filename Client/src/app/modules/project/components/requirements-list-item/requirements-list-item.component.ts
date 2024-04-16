@@ -9,6 +9,9 @@ import { RequirementListItem } from './RequirementListItem';
 export class RequirementsListItemComponent {
 
   @Input()
+  cardStyle: boolean = true;
+
+  @Input()
   model?: RequirementListItem;
 
 }
