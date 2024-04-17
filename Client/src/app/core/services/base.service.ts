@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { appConfiguration } from 'src/app/configuration/configuration-resolver';
 
@@ -9,6 +9,12 @@ export abstract class BaseService {
   protected get<TResponseModel>(url: string): Observable<TResponseModel> {
     return this.interceptRequest(
       this.http.get<TResponseModel>(this.getFullUrl(url), { observe: 'response' })
+    );
+  }
+
+  protected getWithParams<TResponseModel>(url: string, params: HttpParams): Observable<TResponseModel> {
+    return this.interceptRequest(
+      this.http.get<TResponseModel>(this.getFullUrl(url), { observe: 'response', params: params })
     );
   }
 

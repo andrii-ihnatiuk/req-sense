@@ -5,7 +5,7 @@ namespace ReqSense.Application.Common.Interfaces;
 
 public interface IProjectService
 {
-    Task<IEnumerable<ProjectBriefDto>> GetAllUserProjectsAsync(string userId);
+    Task<IEnumerable<ProjectListItemDto>> GetUserProjectsAsync(string userId, string filter);
 
     Task<ProjectFullDto> GetProjectAsync(long id);
 

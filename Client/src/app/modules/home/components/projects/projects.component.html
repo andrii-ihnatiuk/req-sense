@@ -1,7 +1,7 @@
 <div class="content-section">
   <h1>Your projects</h1>
   <div class="projects">
-    <ng-container *ngFor="let project of projects">
+    <ng-container *ngFor="let project of ownProjects">
       <app-card [routerLink]="'/projects/12'" class="projects__card">
         <ng-container
           [ngTemplateOutlet]="projectCard"
@@ -9,7 +9,7 @@
           ></ng-container>
       </app-card>
     </ng-container>
-    <div class="create-new">
+    <div class="create-new" (click)="openNewProjectDialog()">
       <div class="create-new__border"></div>
     </div>
   </div>
@@ -17,14 +17,19 @@
 <div class="content-section">
   <h1>Projects you participate in</h1>
   <div class="projects">
-    <ng-container *ngFor="let project of projects">
-      <app-card [routerLink]="'/projects/hello'">
-        <ng-container
-          [ngTemplateOutlet]="projectCard"
-          [ngTemplateOutletContext]="{ $implicit: project }"
-          ></ng-container>
-      </app-card>
-    </ng-container>
+    @if (memberProjects.length > 0) {
+      <ng-container *ngFor="let project of memberProjects">
+        <app-card [routerLink]="'/projects/hello'">
+          <ng-container
+            [ngTemplateOutlet]="projectCard"
+            [ngTemplateOutletContext]="{ $implicit: project }"
+            ></ng-container>
+        </app-card>
+      </ng-container>
+    }
+    @else {
+      <p>You do not participate in projects yet.</p>
+    }
   </div>
 </div>
 

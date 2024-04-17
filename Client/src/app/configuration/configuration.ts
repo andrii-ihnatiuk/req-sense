@@ -4,4 +4,10 @@ export class Configuration {
   userInfoApiUrl: string = '';
 
   registrationApiUrl: string = '';
+
+  createProjectApiUrl: string = '';
+  getProjectApiUrl: string = '';
+  getUserProjectsApiUrl: string = '';
+  updateProjectApiUrl: string = '';
+  deleteProjectApiUrl:string = '';
 }

@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { HomeModuleComponent } from './components/home-module/home-module.component';
 import { ActivityCardComponent } from './components/activity-card/activity-card.component';
+import { CreateProjectDialogComponent } from './components/create-project-dialog/create-project-dialog.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ActivityCardComponent } from './components/activity-card/activity-card.
     DashboardComponent,
     ProjectsComponent,
     HomeModuleComponent,
-    ActivityCardComponent
+    ActivityCardComponent,
+    CreateProjectDialogComponent
   ],
   imports: [
     CommonModule,

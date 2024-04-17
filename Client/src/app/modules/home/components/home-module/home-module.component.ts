@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MenuItem } from 'src/app/core/models/MenuItem';
+import { ProjectService } from 'src/app/core/services/project.service';
+import { CreateProjectDialogComponent } from '../create-project-dialog/create-project-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -30,4 +34,25 @@ export class HomeModuleComponent {
       link: '/notifications'
     }
   ];
+
+  constructor(
+    private dialog: MatDialog,
+    private router: Router
+  ) { }
+
+
+  openNewProjectDialog(): void {
+    const dialogRef = this.dialog.open(
+      CreateProjectDialogComponent,
+      {
+        autoFocus: false,
+      },
+    );
+
+    dialogRef.afterClosed().subscribe(createdId => {
+      if (!!createdId) {
+        this.router.navigate([`projects/${createdId}`]);
+      }
+    });
+  }
 }

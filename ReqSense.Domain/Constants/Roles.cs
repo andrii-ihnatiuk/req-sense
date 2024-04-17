@@ -1,6 +1,8 @@
 ﻿namespace ReqSense.Domain.Constants;
 
-public class Roles
+public static class Roles
 {
     public const string Owner = nameof(Owner);
+
+    public const string Member = nameof(Member);
 }

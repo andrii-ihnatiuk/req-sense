@@ -4,7 +4,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarItemComponent } from './components/sidebar-item/sidebar-item.component';
@@ -15,6 +15,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { SelectComponent } from './components/select/select.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDialogModule } from '@angular/material/dialog';
 import { AccountExpandableComponent } from './components/account-expandable/account-expandable.component';
 
 
@@ -31,21 +32,24 @@ import { AccountExpandableComponent } from './components/account-expandable/acco
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
     MatIconModule,
-    FormsModule,
     MatButtonModule,
     MatRippleModule,
     MatSelectModule,
     MatExpansionModule,
+    MatDialogModule
   ],
   exports: [
     RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
     MatIconModule,
-    FormsModule,
     MatButtonModule,
     SidebarComponent,
     HeaderComponent,
@@ -55,7 +59,8 @@ import { AccountExpandableComponent } from './components/account-expandable/acco
     InputComponent,
     MatSelectModule,
     SelectComponent,
-    AccountExpandableComponent
+    AccountExpandableComponent,
+    MatDialogModule
   ]
 })
 export class SharedModule { }

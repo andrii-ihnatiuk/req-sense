@@ -4,6 +4,7 @@ using ReqSense.Application.Common.DTOs.Project.Request;
 using ReqSense.Application.Common.DTOs.Project.Response;
 using ReqSense.Application.Common.Exceptions;
 using ReqSense.Application.Common.Interfaces;
+using ReqSense.Domain.Constants;
 using ReqSense.Domain.Entities;
 
 namespace ReqSense.Application.Services;
@@ -21,13 +22,27 @@ public class ProjectService : IProjectService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<ProjectBriefDto>> GetAllUserProjectsAsync(string userId)
+    public async Task<IEnumerable<ProjectListItemDto>> GetUserProjectsAsync(string userId, string filter)
     {
-        var projects = await _dbContext.ProjectsMembers
-            .Where(e => e.MemberId.Equals(userId))
-            .Select(e => e.Project)
+        var projectsQueryable = _dbContext.Projects.AsQueryable();
+        projectsQueryable = filter switch
+        {
+            UserProjectsFilter.Own => projectsQueryable.Where(p =>
+                p.Members.Any(m => m.MemberId.Equals(userId) && m.Role.Equals(Roles.Owner))),
+            UserProjectsFilter.MemberIn => projectsQueryable.Where(p =>
+                p.Members.Any(m => m.MemberId.Equals(userId) && m.Role.Equals(Roles.Member))),
+            _ => projectsQueryable.Where(e => e.Members.Any(m => m.MemberId.Equals(userId)))
+        };
+
+        var projects = await projectsQueryable.Select(p => new ProjectListItemDto(
+                p.Id,
+                p.Title,
+                p.Description,
+                p.Members.Single(m => m.Role.Equals(Roles.Owner)).Member.UserName!,
+                p.Members.Count))
             .ToListAsync();
-        return _mapper.Map<IEnumerable<ProjectBriefDto>>(projects);
+
+        return projects;
     }
 
     public async Task<ProjectFullDto> GetProjectAsync(long id)

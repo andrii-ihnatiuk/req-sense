@@ -2,5 +2,11 @@
   "baseApiUrl": "https://localhost:7250",
   "loginApiUrl": "/account/login",
   "userInfoApiUrl": "/account/info",
-  "registrationApiUrl": "/account/register"
+  "registrationApiUrl": "/account/register",
+
+  "createProjectApiUrl": "/projects",
+  "getProjectApiUrl": "/projects/{id}",
+  "getUserProjectsApiUrl": "/projects",
+  "updateProjectApiUrl": "/projects/{id}",
+  "deleteProjectApiUrl": "/projects/{id}"
 }
