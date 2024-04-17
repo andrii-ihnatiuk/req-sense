@@ -44,7 +44,7 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
     MatRippleModule,
     MatSelectModule,
     MatExpansionModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   exports: [
     RouterModule,
@@ -64,7 +64,7 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
     SelectComponent,
     AccountExpandableComponent,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ]
 })
 export class SharedModule { }

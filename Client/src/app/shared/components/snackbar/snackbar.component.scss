@@ -9,6 +9,7 @@
   align-items: center;
 
   mat-icon {
+    flex-shrink: 0;
     height: 36px;
     width: 36px;
     font-size: 36px;
