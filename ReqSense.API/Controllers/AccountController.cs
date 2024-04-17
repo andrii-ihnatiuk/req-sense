@@ -45,4 +45,11 @@ public class AccountController : ControllerBase
         var info = await _identityService.GetUserInfoAsync(_currentUser.Id!);
         return Ok(info);
     }
+
+    [HttpPost("logout")]
+    public async Task<IActionResult> Logout()
+    {
+        await _identityService.LogoutAsync();
+        return NoContent();
+    }
 }

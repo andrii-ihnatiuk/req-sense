@@ -45,8 +45,8 @@ export class ProjectsComponent implements OnInit {
 
   loadUserProjects(): void {
     const userId = this.authService.userValue?.id;
+
     if (!userId) {
-      alert('not auth');
       return;
     }
 

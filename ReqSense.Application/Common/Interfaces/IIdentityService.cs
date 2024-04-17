@@ -13,6 +13,8 @@ public interface IIdentityService
 
     Task<bool> AuthenticateUserAsync(string email, string password);
 
+    Task LogoutAsync();
+
     Task DeleteUserAsync(string userId);
 
     Task DeleteUserAsync(IApplicationUser user);

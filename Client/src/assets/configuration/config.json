@@ -1,6 +1,7 @@
 {
   "baseApiUrl": "https://localhost:7250",
   "loginApiUrl": "/account/login",
+  "logoutApiUrl": "/account/logout",
   "userInfoApiUrl": "/account/info",
   "registrationApiUrl": "/account/register",
 

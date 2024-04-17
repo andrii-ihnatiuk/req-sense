@@ -1,0 +1,13 @@
+<div class="snackbar__content">
+  <mat-icon [ngSwitch]="data.type" [ngClass]="getIconClass()">
+    <ng-container *ngSwitchCase="'warn'">warning</ng-container>
+    <ng-container *ngSwitchCase="'info'">info</ng-container>
+    <ng-container *ngSwitchDefault>error</ng-container>
+  </mat-icon>
+  <div matSnackBarLabel>
+    {{ data.message }}
+  </div>
+</div>
+<span matSnackBarActions>
+  <button mat-button color="warn" matSnackBarAction (click)="snackBarRef.dismissWithAction()">Ok</button>
+</span>

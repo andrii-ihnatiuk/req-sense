@@ -66,6 +66,11 @@ public class IdentityService : IIdentityService
         return result.Succeeded;
     }
 
+    public Task LogoutAsync()
+    {
+        return _signInManager.SignOutAsync();
+    }
+
     public Task DeleteUserAsync(string userId)
     {
         throw new NotImplementedException();

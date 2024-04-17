@@ -1,5 +1,5 @@
 import { LoginRequest } from "../models/DTOs/LoginRequest";
-import { BehaviorSubject, Observable, catchError, map, of, tap } from "rxjs";
+import { BehaviorSubject, Observable, tap } from "rxjs";
 import { User } from "../models/User";
 import { BaseService } from "./base.service";
 import { HttpClient } from "@angular/common/http";
@@ -38,6 +38,7 @@ export class AuthService extends BaseService {
   logout(): void {
     localStorage.removeItem(this._userKey);
     this.userSubject.next(null);
+    this.post(appConfiguration.logoutApiUrl, null).subscribe();
   }
 
   register(model: RegistrationRequest): Observable<any> {

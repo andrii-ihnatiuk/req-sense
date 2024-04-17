@@ -16,7 +16,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { SelectComponent } from './components/select/select.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AccountExpandableComponent } from './components/account-expandable/account-expandable.component';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
 
 
 @NgModule({
@@ -28,6 +30,7 @@ import { AccountExpandableComponent } from './components/account-expandable/acco
     InputComponent,
     SelectComponent,
     AccountExpandableComponent,
+    SnackbarComponent,
   ],
   imports: [
     CommonModule,
@@ -60,7 +63,8 @@ import { AccountExpandableComponent } from './components/account-expandable/acco
     MatSelectModule,
     SelectComponent,
     AccountExpandableComponent,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ]
 })
 export class SharedModule { }

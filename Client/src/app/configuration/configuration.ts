@@ -1,6 +1,7 @@
 export class Configuration {
   baseApiUrl: string = '';
   loginApiUrl: string = '';
+  logoutApiUrl: string = '';
   userInfoApiUrl: string = '';
 
   registrationApiUrl: string = '';

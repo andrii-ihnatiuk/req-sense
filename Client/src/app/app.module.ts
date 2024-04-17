@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -7,6 +7,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { resolveConfiguration } from './configuration/configuration-resolver';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './core/services/auth.interceptor';
+import { GlobalErrorHandlerService } from './core/services/error-handler';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,10 @@ import { AuthInterceptor } from './core/services/auth.interceptor';
       provide: HTTP_INTERCEPTORS,
       multi: true,
       useClass: AuthInterceptor
+    },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandlerService
     },
     provideAnimationsAsync()
   ],

@@ -18,6 +18,6 @@ export class AccountExpandableComponent {
 
   signOut(): void {
     this.auth.logout();
-    this.router.navigate(['']);
+    this.router.navigate(['/account/login']);
   }
 }
