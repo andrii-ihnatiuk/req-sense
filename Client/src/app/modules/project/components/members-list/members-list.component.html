@@ -1,6 +1,7 @@
 <div class="list-header">
   <div class="list-header__label">Member name</div>
   <div class="list-header__label">Joined</div>
+  <div *ngIf="withActions" class="list-header__label">Actions</div>
 </div>
 <div class="list-body">
   <ng-container *ngFor="let item of listItems">

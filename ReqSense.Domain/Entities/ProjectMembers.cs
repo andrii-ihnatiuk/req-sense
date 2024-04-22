@@ -11,6 +11,8 @@ public partial class ProjectMembers
 
     public string Role { get; set; }
 
+    public DateTimeOffset JoinedDate { get; set; }
+
     public ApplicationUser Member { get; set; }
 
     public Project Project { get; set; }
@@ -23,5 +25,6 @@ public partial class ProjectMembers
         MemberId = id,
         ProjectId = projectId,
         Role = Roles.Owner,
+        JoinedDate = DateTimeOffset.Now,
     };
 }

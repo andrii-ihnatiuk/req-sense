@@ -5,6 +5,7 @@ using ReqSense.Application.Common.Interfaces;
 
 namespace ReqSense.API.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class ProjectsController : ControllerBase
@@ -16,7 +17,6 @@ public class ProjectsController : ControllerBase
         _projectService = projectService;
     }
 
-    [Authorize]
     [HttpGet]
     public async Task<IActionResult> GetProjectsByUser([FromQuery] string userId, [FromQuery] string filter)
     {
@@ -24,7 +24,6 @@ public class ProjectsController : ControllerBase
         return Ok(projects);
     }
 
-    [Authorize]
     [HttpGet("{id:long}")]
     public async Task<IActionResult> GetProjectById([FromRoute] long id)
     {
@@ -32,7 +31,20 @@ public class ProjectsController : ControllerBase
         return Ok(project);
     }
 
-    [Authorize]
+    [HttpGet("{id:long}/insights")]
+    public async Task<IActionResult> GetProjectInsights([FromRoute] long id)
+    {
+        var insights = await _projectService.GetProjectInsightsAsync(id);
+        return Ok(insights);
+    }
+
+    [HttpGet("{id:long}/members")]
+    public async Task<IActionResult> GetProjectMembers([FromRoute] long id, [FromQuery] int? limit)
+    {
+        var members = await _projectService.GetProjectMembersAsync(id, limit);
+        return Ok(members);
+    }
+
     [HttpPost]
     public async Task<IActionResult> CreateProject(CreateProjectDto projectDto)
     {

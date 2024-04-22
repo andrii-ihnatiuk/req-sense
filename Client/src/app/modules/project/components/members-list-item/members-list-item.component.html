@@ -17,7 +17,7 @@
           <div class="contacts__email">{{ model.email }}</div>
         </div>
       </div>
-      <div class="joined-date">{{ model.joinedDate }}</div>
+      <div class="joined-date">{{ model.joinedDate | date: 'dd.MM.yyyy' }}</div>
       <div *ngIf="showActions" class="actions">
         <button mat-icon-button>
           <mat-icon>person_remove</mat-icon>

@@ -1,4 +1,5 @@
 ﻿using ReqSense.Domain.Common;
+using ReqSense.Infrastructure.Identity;
 
 namespace ReqSense.Domain.Entities;
 
@@ -12,5 +13,5 @@ public class Requirement : AuditableEntityBase
 
     public string Status { get; set; }
 
-    public string CreatorId { get; set; }
+    public ApplicationUser Creator { get; set; }
 }

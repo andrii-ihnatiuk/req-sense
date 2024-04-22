@@ -7,4 +7,6 @@ namespace ReqSense.Infrastructure.Identity;
 public class ApplicationUser : IdentityUser, IApplicationUser
 {
     public ICollection<ProjectMembers> Projects { get; set; }
+
+    public ICollection<Requirement> Requirements { get; set; }
 }

@@ -36,7 +36,7 @@ export class AuthInterceptor implements HttpInterceptor {
       this.authService.logout();
       this.router.navigate(['account/login']);
       setTimeout(() => {
-        this.snackBar.openFromComponent(SnackbarComponent, SnackbarComponent.InfoConfig('Your login has expired.'));
+        this.snackBar.openFromComponent(SnackbarComponent, SnackbarComponent.InfoConfig('Your login has expired.', 2000));
       }, 200)
     }
     else {

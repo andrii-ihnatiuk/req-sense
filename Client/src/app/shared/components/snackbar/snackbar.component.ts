@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
+import { MAT_SNACK_BAR_DATA, MatSnackBarConfig, MatSnackBarRef } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-snackbar',
@@ -18,24 +18,27 @@ export class SnackbarComponent {
     return this.data.type ?? 'info';
   }
 
-  static ErrorConfig(message: string): Object {
+  static ErrorConfig(message: string, duration?: number): MatSnackBarConfig {
     return {
       verticalPosition: 'top',
-      data: { message: message, type: 'error' }
+      data: { message: message, type: 'error' },
+      duration: duration
     }
   }
 
-  static WarnConfig(message: string): Object {
+  static WarnConfig(message: string, duration?: number): MatSnackBarConfig {
     return {
       verticalPosition: 'top',
-      data: { message: message, type: 'warn' }
+      data: { message: message, type: 'warn' },
+      duration: duration
     }
   }
 
-  static InfoConfig(message: string): Object {
+  static InfoConfig(message: string, duration?: number): MatSnackBarConfig {
     return {
       verticalPosition: 'top',
-      data: { message: message, type: 'info' }
+      data: { message: message, type: 'info' },
+      duration: duration
     }
   }
 }

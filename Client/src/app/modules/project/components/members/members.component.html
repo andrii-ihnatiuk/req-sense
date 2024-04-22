@@ -21,6 +21,6 @@
     </div>
   </div>
   <div class="requirements-list-wrapper">
-    <app-members-list [withActions]="true" [withCardStyle]="true"></app-members-list>
+    <app-members-list *ngIf="!!members" [listItems]="members" [withActions]="true" [withCardStyle]="true"></app-members-list>
   </div>
 </section>

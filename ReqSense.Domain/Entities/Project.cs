@@ -9,4 +9,6 @@ public class Project : EntityBase
     public string? Description { get; set; }
 
     public ICollection<ProjectMembers> Members { get; set; } = new List<ProjectMembers>();
+
+    public ICollection<Requirement> Requirements { get; set; } = new List<Requirement>();
 }

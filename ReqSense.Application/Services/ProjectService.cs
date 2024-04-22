@@ -56,6 +56,32 @@ public class ProjectService : IProjectService
         return _mapper.Map<ProjectFullDto>(project);
     }
 
+    public async Task<ProjectInsightsDto> GetProjectInsightsAsync(long id)
+    {
+        var query = _dbContext.Requirements.Where(q => q.ProjectId.Equals(id));
+        var totalRequirements = await query.CountAsync();
+        var requirementsThisWeek = await query.Where(q => q.Created >= DateTimeOffset.Now.AddDays(-7)).CountAsync();
+        return new ProjectInsightsDto(requirementsThisWeek, totalRequirements);
+    }
+
+    public async Task<IEnumerable<ProjectMemberDto>> GetProjectMembersAsync(long id, int? limit)
+    {
+        IQueryable<ProjectMembers> membersQuery = _dbContext.ProjectsMembers.Where(q => q.ProjectId.Equals(id))
+            .OrderByDescending(q => q.JoinedDate);
+
+        if (limit is not null)
+        {
+            membersQuery = membersQuery.Take((int)limit);
+        }
+
+        var members = await membersQuery
+            .Include(q => q.Member)
+            .Select(q => new ProjectMemberDto(q.Member.UserName!, q.Member.Email!, q.Role, q.JoinedDate))
+            .ToListAsync();
+
+        return members;
+    }
+
     public async Task<long> CreateProjectAsync(CreateProjectDto dto)
     {
         var project = _mapper.Map<Project>(dto);

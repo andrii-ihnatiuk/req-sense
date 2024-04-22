@@ -20,7 +20,7 @@
         </mat-form-field>
         <mat-form-field class="form__field_fw">
           <mat-label>Password</mat-label>
-          <input type="text" matInput [formControl]="getControl('password')" placeholder="Enter your password here">
+          <input type="password" matInput [formControl]="getControl('password')" placeholder="Enter your password here">
           @if (getControl('password').hasError('required')) {
           <mat-error>Password is <strong>required</strong></mat-error>
           }

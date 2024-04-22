@@ -9,6 +9,10 @@ public interface IProjectService
 
     Task<ProjectFullDto> GetProjectAsync(long id);
 
+    Task<ProjectInsightsDto> GetProjectInsightsAsync(long id);
+
+    Task<IEnumerable<ProjectMemberDto>> GetProjectMembersAsync(long id, int? limit);
+
     Task<long> CreateProjectAsync(CreateProjectDto dto);
 
     Task UpdateProjectAsync(UpdateProjectDto dto);

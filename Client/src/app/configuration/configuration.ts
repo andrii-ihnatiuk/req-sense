@@ -8,6 +8,8 @@ export class Configuration {
 
   createProjectApiUrl: string = '';
   getProjectApiUrl: string = '';
+  getProjectInsightsApiUrl: string = '';
+  getProjectMembersApiUrl: string = '';
   getUserProjectsApiUrl: string = '';
   updateProjectApiUrl: string = '';
   deleteProjectApiUrl:string = '';

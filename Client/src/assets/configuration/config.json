@@ -7,6 +7,8 @@
 
   "createProjectApiUrl": "/projects",
   "getProjectApiUrl": "/projects/{id}",
+  "getProjectInsightsApiUrl": "/projects/{id}/insights",
+  "getProjectMembersApiUrl": "/projects/{id}/members",
   "getUserProjectsApiUrl": "/projects",
   "updateProjectApiUrl": "/projects/{id}",
   "deleteProjectApiUrl": "/projects/{id}"
