@@ -44,11 +44,30 @@ export class ProjectService extends BaseService {
         environment.routeIdTemplate,
         id
       ),
-      new HttpParams({ fromObject: { limit: limit ?? '' } })
+      new HttpParams({ fromObject: { limit: limit ?? "" } })
     );
   }
 
   createProject(project: Project): Observable<any> {
     return this.post(appConfiguration.createProjectApiUrl, project);
+  }
+
+  updateProject(project: Project): Observable<any> {
+    return this.put(
+      appConfiguration.updateProjectApiUrl.replace(
+        environment.routeIdTemplate,
+        project.id!
+      ),
+      project
+    );
+  }
+
+  deleteProject(id: string): Observable<any> {
+    return this.delete(
+      appConfiguration.deleteProjectApiUrl.replace(
+        environment.routeIdTemplate,
+        id
+      )
+    );
   }
 }

@@ -46,9 +46,23 @@ public class ProjectsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateProject(CreateProjectDto projectDto)
+    public async Task<IActionResult> CreateProject([FromBody] CreateProjectDto projectDto)
     {
         var id = await _projectService.CreateProjectAsync(projectDto);
         return CreatedAtAction(nameof(GetProjectById), new { id }, new { id });
+    }
+
+    [HttpPut("{id:long}")]
+    public async Task<IActionResult> UpdateProject([FromBody] UpdateProjectDto projectDto)
+    {
+        await _projectService.UpdateProjectAsync(projectDto);
+        return NoContent();
+    }
+
+    [HttpDelete("{id:long}")]
+    public async Task<IActionResult> DeleteProject([FromRoute] long id)
+    {
+        await _projectService.DeleteProjectAsync(id);
+        return NoContent();
     }
 }

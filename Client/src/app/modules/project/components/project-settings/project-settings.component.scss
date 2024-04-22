@@ -1,0 +1,12 @@
+.content-section {
+  margin-bottom: 50px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  mat-form-field {
+    max-width: 500px;
+  }
+}

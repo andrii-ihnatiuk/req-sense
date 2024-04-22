@@ -4,6 +4,7 @@ import { ProjectHomeComponent } from './components/project-home/project-home.com
 import { RequirementsComponent } from './components/requirements/requirements.component';
 import { ProjectModuleComponent } from './components/project-module/project-module.component';
 import { MembersComponent } from './components/members/members.component';
+import { ProjectSettingsComponent as ProjectSettingsComponent } from './components/project-settings/project-settings.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: 'members',
         component: MembersComponent
+      },
+      {
+        path: 'settings',
+        component: ProjectSettingsComponent
       }
     ]
   }

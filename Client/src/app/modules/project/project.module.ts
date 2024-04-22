@@ -11,6 +11,7 @@ import { MembersListItemComponent } from './components/members-list-item/members
 import { RequirementsListComponent } from './components/requirements-list/requirements-list.component';
 import { RequirementsListItemComponent } from './components/requirements-list-item/requirements-list-item.component';
 import { MembersComponent } from './components/members/members.component';
+import { ProjectSettingsComponent } from './components/project-settings/project-settings.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { MembersComponent } from './components/members/members.component';
         MembersListItemComponent,
         RequirementsListComponent,
         RequirementsListItemComponent,
-        MembersComponent
+        MembersComponent,
+        ProjectSettingsComponent
     ],
     imports: [
         CommonModule,

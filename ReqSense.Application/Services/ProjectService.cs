@@ -99,10 +99,7 @@ public class ProjectService : IProjectService
     public async Task UpdateProjectAsync(UpdateProjectDto dto)
     {
         var project = await _dbContext.Projects.FindAsync(dto.Id);
-        if (project is null)
-        {
-            throw new NotFoundException($"Project with id {dto.Id} was not found.");
-        }
+        NotFoundException.ThrowIfNull(project, $"Project with id {dto.Id} was not found.");
 
         _mapper.Map(dto, project);
         await _dbContext.SaveChangesAsync();

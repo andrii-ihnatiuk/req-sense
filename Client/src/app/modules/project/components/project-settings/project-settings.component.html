@@ -1,0 +1,38 @@
+<section class="content-section">
+  <h1>Project settings</h1>
+</section>
+<section class="content-section">
+  <form *ngIf="!!form && project" class="form">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput [formControl]="getControl('title')" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        placeholder="You can enter up to 200 symbols"
+        [formControl]="getControl('description')"
+      ></textarea>
+    </mat-form-field>
+    <div>
+      <button mat-flat-button color="primary" (click)="updateProject()">
+        Save
+      </button>
+    </div>
+  </form>
+</section>
+<button mat-button color="warn" (click)="deleteProject()">
+  Delete project
+</button>
+
+<ng-template #deleteProjectTemplate>
+  <h2 mat-dialog-title>Delete project</h2>
+  <mat-dialog-content>
+    Are you sure you want to delete this project?
+  </mat-dialog-content>
+  <mat-dialog-actions [align]="'end'">
+    <button mat-button [mat-dialog-close]="false">No</button>
+    <button mat-button color="warn" [mat-dialog-close]="true" cdkFocusInitial>Yes</button>
+  </mat-dialog-actions>
+</ng-template>
