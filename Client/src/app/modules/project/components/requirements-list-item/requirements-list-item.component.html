@@ -1,5 +1,5 @@
 @if (cardStyle) {
-  <app-card *ngIf="model" [padding]="5">
+  <app-card *ngIf="model" [padding]="5" [hoverable]="true">
     <ng-container *ngTemplateOutlet="content"></ng-container>
   </app-card>
 }

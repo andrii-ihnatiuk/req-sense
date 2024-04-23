@@ -3,7 +3,7 @@
     <section class="content-section">
       <h1>{{ project?.title }}</h1>
       <p>{{ project?.description }}</p>
-      <button mat-stroked-button>Go to settings</button>
+      <a mat-stroked-button [routerLink]="['settings']">Go to settings</a>
     </section>
     <section class="content-section">
       <h1>Project members</h1>

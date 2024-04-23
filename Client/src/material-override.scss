@@ -1,5 +1,5 @@
 :root {
-  --mat-form-field-container-vertical-padding: 5px;
+  // --mat-form-field-container-vertical-padding: 5px;
   --mat-filled-button-ripple-color: var(--ripple) !important;
 
   --mat-text-button-ripple-color: var(--ripple) !important;
@@ -51,4 +51,8 @@
 
 .mdc-dialog__actions {
   padding: 15px 24px !important;
+}
+
+.mdc-form-field--align-end>label {
+  padding-right: 12px !important;
 }

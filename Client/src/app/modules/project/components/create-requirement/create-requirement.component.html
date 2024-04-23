@@ -1,0 +1,49 @@
+<section class="content-section">
+  <h1>Requirement input</h1>
+</section>
+<div class="content-container">
+  <div class="content-left">
+    <form class="form">
+      <div class="form__header">
+        <mat-form-field appearance="outline" class="form__requirement-title">
+          <mat-label>Requirement title</mat-label>
+          <input matInput type="text" />
+        </mat-form-field>
+        <div class="form__toggle-wrapper">
+          <mat-slide-toggle color="primary" labelPosition="before" (change)="onAiHelpToggle($event)" [checked]="enableAiHelp">AI help</mat-slide-toggle>
+        </div>
+      </div>
+      <mat-form-field appearance="outline" class="form__field_full-width">
+        <mat-label>Enter requirement</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>
+      <div class="form__actions">
+        <button mat-button>
+          <mat-icon>forum</mat-icon>
+          Create new discussion
+        </button>
+        <button mat-button>Save as draft</button>
+        <button mat-flat-button color="primary">
+          <mat-icon>check_circle</mat-icon>
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="content-right" [@aiQuestions]="!!enableAiHelp ? 'visible' : 'invisible'">
+    <h1>AI Questions</h1>
+    @if (questions.length) {
+      <div class="questions" @fadeInGrow>
+        <app-card *ngFor="let q of questions" [padding]="10" [raised]="true">
+          <div class="question__content">
+            <mat-icon>help</mat-icon>
+            {{ q }}
+          </div>
+        </app-card>
+      </div>
+    }
+    @else {
+      <mat-progress-bar mode="buffer"></mat-progress-bar>
+    }
+  </div>
+</div>

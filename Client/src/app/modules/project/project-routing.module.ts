@@ -1,38 +1,43 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { ProjectHomeComponent } from './components/project-home/project-home.component';
-import { RequirementsComponent } from './components/requirements/requirements.component';
-import { ProjectModuleComponent } from './components/project-module/project-module.component';
-import { MembersComponent } from './components/members/members.component';
-import { ProjectSettingsComponent as ProjectSettingsComponent } from './components/project-settings/project-settings.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { ProjectHomeComponent } from "./components/project-home/project-home.component";
+import { RequirementsComponent } from "./components/requirements/requirements.component";
+import { ProjectModuleComponent } from "./components/project-module/project-module.component";
+import { MembersComponent } from "./components/members/members.component";
+import { ProjectSettingsComponent as ProjectSettingsComponent } from "./components/project-settings/project-settings.component";
+import { CreateRequirementComponent } from "./components/create-requirement/create-requirement.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: ProjectModuleComponent,
     children: [
       {
-        path: '',
+        path: "",
         component: ProjectHomeComponent,
       },
       {
-        path: 'requirements',
-        component: RequirementsComponent
+        path: "requirements",
+        component: RequirementsComponent,
       },
       {
-        path: 'members',
-        component: MembersComponent
+        path: "members",
+        component: MembersComponent,
       },
       {
-        path: 'settings',
-        component: ProjectSettingsComponent
-      }
-    ]
-  }
+        path: "settings",
+        component: ProjectSettingsComponent,
+      },
+      {
+        path: "requirements/new",
+        component: CreateRequirementComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ProjectRoutingModule { }
+export class ProjectRoutingModule {}

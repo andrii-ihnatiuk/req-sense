@@ -9,7 +9,7 @@
         [options]="options"
         [value]="options[0].value"
         ></app-select>
-      <button mat-stroked-button>Add requirement</button>
+      <a mat-stroked-button [routerLink]="['new']">Add requirement</a>
     </div>
     <div class="actions-right">
       <app-input

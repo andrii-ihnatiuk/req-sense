@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/core/models/User';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -8,12 +9,13 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrl: './account-expandable.component.scss'
 })
 export class AccountExpandableComponent {
+  user: User | null;
 
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
     private router: Router
   ) {
-
+    this.user = auth.userValue;
   }
 
   signOut(): void {

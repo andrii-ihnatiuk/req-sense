@@ -37,6 +37,10 @@ a {
     text-decoration: underline;
     cursor: pointer;
   }
+
+  &.mat-mdc-button-base:hover {
+    text-decoration: none;
+  }
 }
 
 h1 {
@@ -53,4 +57,8 @@ h2 {
   font-weight: 500;
   line-height: 1.2;
   margin: 0 0 15px;
+}
+
+.content-section {
+  margin-bottom: 50px;
 }

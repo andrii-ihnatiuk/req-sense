@@ -2,7 +2,7 @@
   <h1>Your projects</h1>
   <div class="projects">
     <ng-container *ngFor="let project of ownProjects">
-      <app-card [routerLink]="['/projects', project.id]" class="projects__card">
+      <app-card class="projects__card" [hoverable]="true">
         <ng-container
           [ngTemplateOutlet]="projectCard"
           [ngTemplateOutletContext]="{ $implicit: project }"
@@ -33,6 +33,7 @@
 </div>
 
 <ng-template #projectCard let-project>
+  <a class="card-link" [routerLink]="['/projects', project.id]"></a>
   <div class="card__header">
     <span class="card__title">{{ project.title }}</span>
   </div>

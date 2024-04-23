@@ -1,4 +1,5 @@
-<app-card *ngIf="!!model" [routerLink]="model.link">
+<app-card *ngIf="!!model" [hoverable]="true">
+  <a class="card-link" [routerLink]="model.link"></a>
   <div class="card__header">
     <mat-icon *ngIf="!!model.icon" class="card__icon">{{ model.icon }}</mat-icon>
     <span class="card__title">{{ model.title }}</span>
