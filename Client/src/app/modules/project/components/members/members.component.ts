@@ -22,7 +22,7 @@ export class MembersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const projectId = this.route.parent?.snapshot.params["id"];
+    const projectId = this.route.parent?.snapshot.params["projectId"];
     this.projectService.getProjectMembers(projectId).subscribe((members) => {
       this.members = members.map((m) => {
         const member: MemberListItem = {

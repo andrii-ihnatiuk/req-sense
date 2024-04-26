@@ -12,6 +12,7 @@ public static class DependencyInjection
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
         services.AddScoped<IProjectService, ProjectService>();
+        services.AddScoped<IRequirementService, RequirementService>();
 
         return services;
     }

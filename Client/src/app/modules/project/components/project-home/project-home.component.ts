@@ -24,7 +24,7 @@ export class ProjectHomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.params["id"];
+    const id = this.route.snapshot.params["projectId"];
     forkJoin({
       project: this.projectService.getProjectById(id),
       insights: this.projectService.getProjectInsights(id),

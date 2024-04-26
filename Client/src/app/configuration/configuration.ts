@@ -2,8 +2,6 @@ export class Configuration {
   baseApiUrl: string = '';
   loginApiUrl: string = '';
   logoutApiUrl: string = '';
-  userInfoApiUrl: string = '';
-
   registrationApiUrl: string = '';
 
   createProjectApiUrl: string = '';
@@ -13,4 +11,8 @@ export class Configuration {
   getUserProjectsApiUrl: string = '';
   updateProjectApiUrl: string = '';
   deleteProjectApiUrl:string = '';
+
+  createRequirementApiUrl: string = '';
+
+  getSuggestionForRequirementApiUrl:string = '';
 }

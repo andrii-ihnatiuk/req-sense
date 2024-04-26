@@ -1,6 +1,7 @@
-import { HttpClient, HttpParams, HttpResponse } from "@angular/common/http";
+import { HttpClient, HttpContext, HttpParams, HttpResponse } from "@angular/common/http";
 import { Observable, map } from "rxjs";
 import { appConfiguration } from "src/app/configuration/configuration-resolver";
+import { SkipLoading } from "./loading.interceptor";
 
 export abstract class BaseService {
   constructor(private http: HttpClient) {}
@@ -15,12 +16,14 @@ export abstract class BaseService {
 
   protected getWithParams<TResponseModel>(
     url: string,
-    params: HttpParams
+    params: HttpParams,
+    skipLoading: boolean = false
   ): Observable<TResponseModel> {
     return this.interceptRequest(
       this.http.get<TResponseModel>(this.getFullUrl(url), {
         observe: "response",
         params: params,
+        context: new HttpContext().set(SkipLoading, skipLoading),
       })
     );
   }

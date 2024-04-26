@@ -3,19 +3,30 @@
 </section>
 <div class="content-container">
   <div class="content-left">
-    <form class="form">
+    <form *ngIf="form" class="form" [formGroup]="form">
       <div class="form__header">
         <mat-form-field appearance="outline" class="form__requirement-title">
           <mat-label>Requirement title</mat-label>
-          <input matInput type="text" />
+          <input matInput type="text" [formControl]="getControl('title')" placeholder="Maximum 30 symbols" />
         </mat-form-field>
         <div class="form__toggle-wrapper">
-          <mat-slide-toggle color="primary" labelPosition="before" (change)="onAiHelpToggle($event)" [checked]="enableAiHelp">AI help</mat-slide-toggle>
+          <mat-slide-toggle
+            color="primary"
+            labelPosition="before"
+            (change)="onAiHelpToggle($event)"
+            [checked]="enableAiHelp"
+            >AI help
+          </mat-slide-toggle>
         </div>
       </div>
       <mat-form-field appearance="outline" class="form__field_full-width">
         <mat-label>Enter requirement</mat-label>
-        <textarea matInput></textarea>
+        <textarea
+          matInput
+          (input)="onRequirementChanged($event)"
+          [formControl]="getControl('description')"
+          placeholder="You can enter up to 4000 symbols"
+        ></textarea>
       </mat-form-field>
       <div class="form__actions">
         <button mat-button>
@@ -23,26 +34,33 @@
           Create new discussion
         </button>
         <button mat-button>Save as draft</button>
-        <button mat-flat-button color="primary">
+        <button mat-flat-button color="primary" (click)="onSaveRequirement()">
           <mat-icon>check_circle</mat-icon>
           Save
         </button>
       </div>
     </form>
   </div>
-  <div class="content-right" [@aiQuestions]="!!enableAiHelp ? 'visible' : 'invisible'">
+  <div
+    class="content-right"
+    [@aiQuestions]="enableAiHelp ? 'visible' : 'invisible'"
+  >
     <h1>AI Questions</h1>
-    @if (questions.length) {
-      <div class="questions" @fadeInGrow>
-        <app-card *ngFor="let q of questions" [padding]="10" [raised]="true">
-          <div class="question__content">
-            <mat-icon>help</mat-icon>
-            {{ q }}
-          </div>
-        </app-card>
-      </div>
-    }
-    @else {
+    @if (!isLoading) {
+      @if (questions.length > 0) {
+        <div class="questions" @fadeInGrow>
+          <app-card *ngFor="let q of questions" [padding]="10" [raised]="true">
+            <div class="question__content">
+              <mat-icon>help</mat-icon>
+              {{ q }}
+            </div>
+          </app-card>
+        </div>
+      }
+      @else {
+        <p>Nothing to show yet</p>
+      }
+    } @else {
       <mat-progress-bar mode="buffer"></mat-progress-bar>
     }
   </div>

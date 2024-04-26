@@ -9,7 +9,6 @@ import { MenuItem } from 'src/app/core/models/MenuItem';
 })
 export class ProjectModuleComponent {
 
-  routeParam: string;
   sideBarMenuItems: MenuItem[] = [
     {
       title: 'Home',
@@ -32,8 +31,4 @@ export class ProjectModuleComponent {
       link: 'settings'
     }
   ]
-
-  constructor(route: ActivatedRoute) {
-    this.routeParam = route.snapshot.params['id'];
-  }
 }

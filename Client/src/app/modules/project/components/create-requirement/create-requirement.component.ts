@@ -7,9 +7,22 @@ import {
   transition,
   trigger,
 } from "@angular/animations";
-import { Component, ElementRef, ViewChild } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { MatSlideToggleChange } from "@angular/material/slide-toggle";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { catchError, debounceTime, of, Subject, switchMap, tap } from "rxjs";
+import { SuggestionService } from "src/app/core/services/suggestion.service";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
+import { Requirement } from "../../../../core/models/Requirement";
+import { RequirementService } from "../../../../core/services/requirement.service";
+import { ActivatedRoute, Router } from "@angular/router";
 
+@UntilDestroy()
 @Component({
   selector: "app-create-requirement",
   templateUrl: "./create-requirement.component.html",
@@ -44,18 +57,87 @@ import { MatSlideToggleChange } from "@angular/material/slide-toggle";
     ]),
   ],
 })
-export class CreateRequirementComponent {
-  @ViewChild("aiBlock")
-  aiBlock?: ElementRef;
-
+export class CreateRequirementComponent implements OnInit {
   enableAiHelp: boolean = true;
+  isLoading: boolean = false;
 
-  questions: string[] = [
-    "Can user like others' comments?",
-    "Can user reply to other comments?",
-  ];
+  questions: string[] = [];
+
+  requirementChangeSubject = new Subject<string>();
+
+  form?: FormGroup;
+
+  projectId: string;
+
+  constructor(
+    private suggestionService: SuggestionService,
+    private requirementService: RequirementService,
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.projectId = this.route.parent?.snapshot.params["projectId"];
+  }
+
+  ngOnInit(): void {
+    this.buildForm();
+
+    this.requirementChangeSubject
+      .pipe(
+        untilDestroyed(this),
+        debounceTime(1500),
+        tap(() => (this.isLoading = true)),
+        switchMap((requirementText) =>
+          this.suggestionService
+            .getRequirementQuestions(requirementText)
+            .pipe(catchError((_) => of([])))
+        )
+      )
+      .subscribe((questions) => {
+        this.questions = questions;
+        this.isLoading = false;
+      });
+  }
+
+  buildForm(): void {
+    this.form = this.fb.group({
+      title: ["", [Validators.required, Validators.maxLength(30)]],
+      description: ["", [Validators.required, Validators.maxLength(4000)]],
+    });
+  }
+
+  getControl(name: string): FormControl {
+    return this.form?.controls[name] as FormControl;
+  }
 
   onAiHelpToggle(toggle: MatSlideToggleChange): void {
     this.enableAiHelp = toggle.checked;
+  }
+
+  onRequirementChanged(event: any): void {
+    if (this.enableAiHelp) {
+      this.requirementChangeSubject.next(event.target.value);
+    }
+  }
+
+  onSaveRequirement(): void {
+    if (this.form?.invalid) {
+      alert("Form is invalid");
+      return;
+    }
+
+    const requirement: Requirement = {
+      title: this.getControl("title").value.trim(),
+      description: this.getControl("description").value.trim(),
+      projectId: this.projectId,
+    };
+
+    this.requirementService
+      .createRequirement(requirement)
+      .subscribe((response) => {
+        if (response.id) {
+          this.router.navigate(["/projects", this.projectId, "requirements"]);
+        }
+      });
   }
 }

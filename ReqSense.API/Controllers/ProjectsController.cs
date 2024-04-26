@@ -38,13 +38,6 @@ public class ProjectsController : ControllerBase
         return Ok(insights);
     }
 
-    [HttpGet("{id:long}/members")]
-    public async Task<IActionResult> GetProjectMembers([FromRoute] long id, [FromQuery] int? limit)
-    {
-        var members = await _projectService.GetProjectMembersAsync(id, limit);
-        return Ok(members);
-    }
-
     [HttpPost]
     public async Task<IActionResult> CreateProject([FromBody] CreateProjectDto projectDto)
     {

@@ -37,7 +37,7 @@ export class ProjectSettingsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const projectId = this.route.parent?.snapshot.params["id"];
+    const projectId = this.route.parent?.snapshot.params["projectId"];
     this.projectService.getProjectById(projectId).subscribe((project) => {
       this.project = project;
       this.buildForm();

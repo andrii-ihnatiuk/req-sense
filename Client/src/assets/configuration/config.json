@@ -2,7 +2,6 @@
   "baseApiUrl": "https://localhost:7250",
   "loginApiUrl": "/account/login",
   "logoutApiUrl": "/account/logout",
-  "userInfoApiUrl": "/account/info",
   "registrationApiUrl": "/account/register",
 
   "createProjectApiUrl": "/projects",
@@ -11,5 +10,9 @@
   "getProjectMembersApiUrl": "/projects/{id}/members",
   "getUserProjectsApiUrl": "/projects",
   "updateProjectApiUrl": "/projects/{id}",
-  "deleteProjectApiUrl": "/projects/{id}"
+  "deleteProjectApiUrl": "/projects/{id}",
+
+  "createRequirementApiUrl": "/projects/{id}/requirements",
+
+  "getSuggestionForRequirementApiUrl": "/suggestions/requirement/questions"
 }

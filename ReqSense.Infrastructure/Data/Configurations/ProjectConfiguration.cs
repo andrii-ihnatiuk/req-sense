@@ -8,6 +8,8 @@ public class ProjectConfiguration : IEntityTypeConfiguration<Project>
 {
     public void Configure(EntityTypeBuilder<Project> builder)
     {
+        builder.HasIndex(e => e.Title).IsUnique();
+
         builder.Property(e => e.Title)
             .HasMaxLength(50);
 
