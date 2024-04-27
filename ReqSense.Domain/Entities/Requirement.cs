@@ -14,4 +14,6 @@ public class Requirement : AuditableEntityBase
     public string Status { get; set; }
 
     public ApplicationUser Creator { get; set; }
+
+    public ApplicationUser? LastEditor { get; set; }
 }

@@ -4,7 +4,9 @@
   <div class="list-header__label">Actions</div>
 </div>
 <div class="list-body">
+  @if (listItems?.length) {
   <ng-container *ngFor="let item of listItems">
     <app-requirements-list-item [model]="item"></app-requirements-list-item>
   </ng-container>
+  }
 </div>

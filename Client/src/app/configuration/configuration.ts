@@ -13,6 +13,8 @@ export class Configuration {
   deleteProjectApiUrl:string = '';
 
   createRequirementApiUrl: string = '';
+  getRequirementsByProjectApiUrl: string = '';
+  getRequirementByIdApiUrl: string = '';
 
   getSuggestionForRequirementApiUrl:string = '';
 }

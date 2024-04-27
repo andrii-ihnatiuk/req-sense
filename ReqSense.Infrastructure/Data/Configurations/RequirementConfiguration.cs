@@ -15,6 +15,11 @@ public class RequirementConfiguration : IEntityTypeConfiguration<Requirement>
             .HasForeignKey(e => e.CreatedBy)
             .IsRequired();
 
+        builder.HasOne(e => e.LastEditor)
+            .WithMany()
+            .HasForeignKey(e => e.LastModifiedBy)
+            .IsRequired(false);
+
         builder.HasOne<Project>()
             .WithMany(p => p.Requirements)
             .HasForeignKey(e => e.ProjectId);

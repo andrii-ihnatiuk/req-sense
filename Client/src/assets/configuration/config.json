@@ -13,6 +13,8 @@
   "deleteProjectApiUrl": "/projects/{id}",
 
   "createRequirementApiUrl": "/projects/{id}/requirements",
+  "getRequirementsByProjectApiUrl": "/projects/{id}/requirements",
+  "getRequirementByIdApiUrl": "/requirements/{id}",
 
   "getSuggestionForRequirementApiUrl": "/suggestions/requirement/questions"
 }

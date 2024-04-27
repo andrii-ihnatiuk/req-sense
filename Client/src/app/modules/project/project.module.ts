@@ -13,6 +13,7 @@ import { RequirementsListItemComponent } from "./components/requirements-list-it
 import { MembersComponent } from "./components/members/members.component";
 import { ProjectSettingsComponent } from "./components/project-settings/project-settings.component";
 import { CreateRequirementComponent } from "./components/create-requirement/create-requirement.component";
+import { ViewRequirementComponent } from './components/view-requirement/view-requirement.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CreateRequirementComponent } from "./components/create-requirement/crea
     MembersComponent,
     ProjectSettingsComponent,
     CreateRequirementComponent,
+    ViewRequirementComponent,
   ],
   imports: [CommonModule, ProjectRoutingModule, SharedModule],
 })

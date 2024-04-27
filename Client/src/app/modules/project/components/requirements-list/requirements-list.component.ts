@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RequirementListItem } from '../requirements-list-item/RequirementListItem';
 
 @Component({
@@ -8,16 +8,6 @@ import { RequirementListItem } from '../requirements-list-item/RequirementListIt
 })
 export class RequirementsListComponent {
 
-  listItems: RequirementListItem[] = [
-    {
-      title: 'Comments feature',
-      owner: 'Emily Blunt',
-      createdDate: '12.04.2024'
-    },
-    {
-      title: 'Comments feature',
-      owner: 'Emily Blunt',
-      createdDate: '12.04.2024'
-    }
-  ]
+  @Input()
+  listItems?: RequirementListItem[];
 }

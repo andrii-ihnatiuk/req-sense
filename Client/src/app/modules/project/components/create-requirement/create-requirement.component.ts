@@ -115,7 +115,7 @@ export class CreateRequirementComponent implements OnInit {
   }
 
   onRequirementChanged(event: any): void {
-    if (this.enableAiHelp) {
+    if (this.enableAiHelp && event.target.value.length > 0) {
       this.requirementChangeSubject.next(event.target.value);
     }
   }

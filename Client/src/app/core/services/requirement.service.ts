@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, model } from "@angular/core";
 import { BaseService } from "./base.service";
 import { HttpClient } from "@angular/common/http";
 import { Requirement } from "../models/Requirement";
@@ -12,6 +12,24 @@ import { environment } from "src/environments";
 export class RequirementService extends BaseService {
   constructor(http: HttpClient) {
     super(http);
+  }
+
+  getProjectRequirements(projectId: string): Observable<Requirement[]> {
+    return this.get(
+      appConfiguration.getRequirementsByProjectApiUrl.replace(
+        environment.routeIdTemplate,
+        projectId
+      )
+    );
+  }
+
+  getRequirementById(id: string): Observable<Requirement> {
+    return this.get(
+      appConfiguration.getRequirementByIdApiUrl.replace(
+        environment.routeIdTemplate,
+        id
+      )
+    )
   }
 
   createRequirement(model: Requirement): Observable<any> {
