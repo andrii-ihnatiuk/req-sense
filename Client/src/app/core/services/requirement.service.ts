@@ -1,4 +1,4 @@
-import { Injectable, model } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { BaseService } from "./base.service";
 import { HttpClient } from "@angular/common/http";
 import { Requirement } from "../models/Requirement";
@@ -29,16 +29,25 @@ export class RequirementService extends BaseService {
         environment.routeIdTemplate,
         id
       )
-    )
+    );
   }
 
-  createRequirement(model: Requirement): Observable<any> {
+  createRequirement(model: Requirement): Observable<{ id: string }> {
     return this.post(
       appConfiguration.createRequirementApiUrl.replace(
         environment.routeIdTemplate,
         model.projectId
       ),
       model
+    );
+  }
+
+  deleteRequirement(id: string): Observable<any> {
+    return this.delete(
+      appConfiguration.deleteRequirementApiUrl.replace(
+        environment.routeIdTemplate,
+        id
+      )
     );
   }
 }

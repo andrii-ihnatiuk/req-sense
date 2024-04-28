@@ -10,4 +10,6 @@ public interface IRequirementService
     Task<RequirementFullDto> GetRequirementByIdAsync(long requirementId);
 
     Task<long> CreateRequirementAsync(CreateRequirementDto dto, long projectId);
+
+    Task DeleteRequirementAsync(long requirementId);
 }

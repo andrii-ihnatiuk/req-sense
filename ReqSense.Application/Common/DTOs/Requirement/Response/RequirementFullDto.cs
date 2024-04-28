@@ -3,6 +3,7 @@
 public record RequirementFullDto(
     long Id,
     string Title,
+    string Description,
     string Status,
     DateTimeOffset Created,
     string CreatorName,

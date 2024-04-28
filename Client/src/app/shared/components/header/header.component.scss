@@ -2,6 +2,7 @@
   position: relative;
   box-sizing: border-box;
   background-color: var(--bg);
+  height: var(--header-height);
 
   &:after {
     content: " ";
@@ -14,6 +15,9 @@
   }
 
   .header-content {
+    height: 100%;
+    box-sizing: border-box;
+    align-items: center;
     padding: 10px 24px 7px 24px;
     display: flex;
     justify-content: space-between;

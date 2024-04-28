@@ -1,3 +1,44 @@
 <section class="content-section">
-  <h1>Requirement title</h1>
+  <h1>{{ requirement?.title }}</h1>
 </section>
+<div class="action-bar">
+  <div class="action-bar-info">
+    <div class="info">
+      <div class="info-header">Created by</div>
+      <div class="info-body">
+        <div class="info__image"></div>
+        <div class="info-content">
+          <div class="info__name">{{ requirement?.creatorName }}</div>
+          <div class="info__date">{{ requirement?.created | date: 'dd.MM.yyyy, HH:mm:ss' }}</div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="requirement?.lastEditorName && requirement?.lastModified" class="info">
+      <div class="info-header">Last edited by</div>
+      <div class="info-body">
+        <div class="info__image"></div>
+        <div class="info-content">
+          <div class="info__name">{{ requirement?.lastEditorName }}</div>
+          <div class="info__date">{{ requirement?.lastModified | date: 'dd.MM.yyyy, HH:mm:ss' }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="action-bar-actions">
+    <button mat-button>
+      <mat-icon>edit</mat-icon>
+      Edit
+    </button>
+    <button mat-button>
+      <mat-icon>history</mat-icon>
+      History
+    </button>
+    <button mat-button (click)="onDeleteRequirement()">
+      <mat-icon>delete</mat-icon>
+      Delete
+    </button>
+  </div>
+</div>
+<mat-form-field class="form__field_full-width">
+  <textarea matInput readonly [value]="requirement?.description" class="requirement__description"></textarea>
+</mat-form-field>

@@ -44,4 +44,12 @@ public class RequirementService(
         await dbContext.SaveChangesAsync();
         return requirement.Id;
     }
+
+    public async Task DeleteRequirementAsync(long requirementId)
+    {
+        var requirement = await dbContext.Requirements.FindAsync(requirementId);
+        NotFoundException.ThrowIfNull(requirement, $"Requirement with id {requirementId} was not found");
+        dbContext.Requirements.Remove(requirement!);
+        await dbContext.SaveChangesAsync();
+    }
 }

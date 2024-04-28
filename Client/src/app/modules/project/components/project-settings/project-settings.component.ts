@@ -15,6 +15,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Project } from "src/app/core/models/Project";
 import { ProjectService } from "src/app/core/services/project.service";
+import { ConfirmationDialog } from "src/app/shared/components/confirmation-dialog/confirmation-dialog.component";
 
 @Component({
   selector: "app-project-settings",
@@ -24,9 +25,6 @@ import { ProjectService } from "src/app/core/services/project.service";
 export class ProjectSettingsComponent implements OnInit {
   form?: FormGroup;
   project?: Project;
-
-  @ViewChild("deleteProjectTemplate", { static: true })
-  deleteProjectTemplate?: TemplateRef<void>;
 
   constructor(
     private projectService: ProjectService,
@@ -73,11 +71,12 @@ export class ProjectSettingsComponent implements OnInit {
   }
 
   deleteProject(): void {
-    if (!this.deleteProjectTemplate) {
-      throw new Error("Dialog template is not present");
-    }
-
-    const dialogRef = this.dialog.open(this.deleteProjectTemplate!);
+    const dialogRef = this.dialog.open(ConfirmationDialog, {
+      data: {
+        title: "Delete project",
+        message: `Are you sure you want to delete "${this.project?.title}"?`,
+      },
+    });
     dialogRef.afterClosed().subscribe((userApproved) => {
       if (userApproved) {
         this.projectService.deleteProject(this.project?.id!).subscribe((_) => {

@@ -16,6 +16,8 @@
     --text-dimmed: #9095A1FF;
     --shadow: rgb(226, 226, 227);
     --ripple: rgb(108, 23, 232, .1);
+
+    --header-height: 55px;
 }
 
 html, body { height: 100%; }
@@ -61,4 +63,8 @@ h2 {
 
 .content-section {
   margin-bottom: 50px;
+}
+
+.form__field_full-width {
+  width: 100%;
 }

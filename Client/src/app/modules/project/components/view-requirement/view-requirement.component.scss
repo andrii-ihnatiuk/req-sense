@@ -1,0 +1,58 @@
+.action-bar {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.action-bar-info {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex: 1;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+
+  .info-body {
+    display: flex;
+  }
+
+  .info__image {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background-color: gray;
+    margin-right: 8px;
+  }
+
+  .info-header {
+    margin-bottom: 5px;
+    font-weight: 700;
+  }
+
+  .info-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .info__date {
+      color: var(--text-dimmed);
+      font-size: 12px;
+    }
+  }
+}
+
+.action-bar-actions {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+
+.requirement__description {
+  min-height: 400px;
+  height: 400px;
+}

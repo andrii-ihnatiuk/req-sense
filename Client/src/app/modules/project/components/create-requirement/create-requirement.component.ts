@@ -99,13 +99,6 @@ export class CreateRequirementComponent implements OnInit {
       });
   }
 
-  buildForm(): void {
-    this.form = this.fb.group({
-      title: ["", [Validators.required, Validators.maxLength(30)]],
-      description: ["", [Validators.required, Validators.maxLength(4000)]],
-    });
-  }
-
   getControl(name: string): FormControl {
     return this.form?.controls[name] as FormControl;
   }
@@ -139,5 +132,12 @@ export class CreateRequirementComponent implements OnInit {
           this.router.navigate(["/projects", this.projectId, "requirements"]);
         }
       });
+  }
+
+  private buildForm(): void {
+    this.form = this.fb.group({
+      title: ["", [Validators.required, Validators.maxLength(30)]],
+      description: ["", [Validators.required, Validators.maxLength(4000)]],
+    });
   }
 }

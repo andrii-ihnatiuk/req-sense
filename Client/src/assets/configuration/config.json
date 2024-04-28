@@ -15,6 +15,7 @@
   "createRequirementApiUrl": "/projects/{id}/requirements",
   "getRequirementsByProjectApiUrl": "/projects/{id}/requirements",
   "getRequirementByIdApiUrl": "/requirements/{id}",
+  "deleteRequirementApiUrl": "/requirements/{id}",
 
   "getSuggestionForRequirementApiUrl": "/suggestions/requirement/questions"
 }

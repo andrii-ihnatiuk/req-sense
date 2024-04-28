@@ -34,4 +34,11 @@ public class RequirementsController(
         var id = await requirementService.CreateRequirementAsync(dto, projectId);
         return Ok(new { id });
     }
+
+    [HttpDelete("{requirementId:long}")]
+    public async Task<IActionResult> DeleteRequirement([FromRoute] long requirementId)
+    {
+        await requirementService.DeleteRequirementAsync(requirementId);
+        return NoContent();
+    }
 }

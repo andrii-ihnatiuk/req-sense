@@ -17,4 +17,6 @@
 
 .content-wrapper {
   padding: 50px;
+  box-sizing: border-box;
+  height: calc(100% - var(--header-height));
 }
