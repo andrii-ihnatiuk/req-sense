@@ -25,10 +25,10 @@
     </div>
   </div>
   <div class="action-bar-actions">
-    <button mat-button>
+    <a mat-button [routerLink]="['../../edit', this.requirementId]">
       <mat-icon>edit</mat-icon>
       Edit
-    </button>
+    </a>
     <button mat-button>
       <mat-icon>history</mat-icon>
       History
@@ -39,6 +39,6 @@
     </button>
   </div>
 </div>
-<mat-form-field class="form__field_full-width">
+<mat-form-field appearance="outline" class="form__field_full-width">
   <textarea matInput readonly [value]="requirement?.description" class="requirement__description"></textarea>
 </mat-form-field>

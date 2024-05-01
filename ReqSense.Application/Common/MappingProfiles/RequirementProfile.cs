@@ -18,6 +18,8 @@ public class RequirementProfile : Profile
     {
         CreateMap<CreateRequirementDto, Requirement>()
             .ForMember(dest => dest.Status, opts => opts.MapFrom(_ => RequirementStatuses.Provided));
+
+        CreateMap<UpdateRequirementDto, Requirement>();
     }
 
     private void CreateModelToDtoMappings()

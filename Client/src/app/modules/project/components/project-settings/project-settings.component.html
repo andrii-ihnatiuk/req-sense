@@ -3,11 +3,11 @@
 </section>
 <section class="content-section">
   <form *ngIf="!!form && project" class="form">
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Title</mat-label>
       <input matInput [formControl]="getControl('title')" />
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Description</mat-label>
       <textarea
         matInput
@@ -17,6 +17,7 @@
     </mat-form-field>
     <div>
       <button mat-flat-button color="primary" (click)="updateProject()">
+        <mat-icon>check_circle</mat-icon>
         Save
       </button>
     </div>

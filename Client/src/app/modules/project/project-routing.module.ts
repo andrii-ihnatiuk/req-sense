@@ -7,6 +7,7 @@ import { MembersComponent } from "./components/members/members.component";
 import { ProjectSettingsComponent as ProjectSettingsComponent } from "./components/project-settings/project-settings.component";
 import { CreateRequirementComponent } from "./components/create-requirement/create-requirement.component";
 import { ViewRequirementComponent } from "./components/view-requirement/view-requirement.component";
+import { UpdateRequirementComponent } from "./components/update-requirement/update-requirement.component";
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
       {
         path: "requirements/view/:requirementId",
         component: ViewRequirementComponent
+      },
+      {
+        path: "requirements/edit/:requirementId",
+        component: UpdateRequirementComponent
       }
     ],
   },

@@ -25,9 +25,9 @@
         <button mat-icon-button>
           <mat-icon>notifications</mat-icon>
         </button>
-        <button mat-icon-button>
+        <a mat-icon-button [routerLink]="['edit', model.id]">
           <mat-icon>edit</mat-icon>
-        </button>
+        </a>
       </div>
     </div>
   }

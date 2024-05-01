@@ -11,5 +11,7 @@ public interface IRequirementService
 
     Task<long> CreateRequirementAsync(CreateRequirementDto dto, long projectId);
 
+    Task UpdateRequirementAsync(UpdateRequirementDto dto);
+
     Task DeleteRequirementAsync(long requirementId);
 }

@@ -15,6 +15,7 @@ export class Configuration {
   createRequirementApiUrl: string = '';
   getRequirementsByProjectApiUrl: string = '';
   getRequirementByIdApiUrl: string = '';
+  updateRequirementApiUrl: string = '';
   deleteRequirementApiUrl:string = '';
 
   getSuggestionForRequirementApiUrl:string = '';

@@ -5,6 +5,7 @@ import { Requirement } from "../models/Requirement";
 import { Observable } from "rxjs";
 import { appConfiguration } from "../../configuration/configuration-resolver";
 import { environment } from "src/environments";
+import { UpdateRequirementRequest } from "../models/DTOs/UpdateRequirementRequest";
 
 @Injectable({
   providedIn: "root",
@@ -37,6 +38,16 @@ export class RequirementService extends BaseService {
       appConfiguration.createRequirementApiUrl.replace(
         environment.routeIdTemplate,
         model.projectId
+      ),
+      model
+    );
+  }
+
+  updateRequirement(model: UpdateRequirementRequest): Observable<any> {
+    return this.put(
+      appConfiguration.updateRequirementApiUrl.replace(
+        environment.routeIdTemplate,
+        model.id!
       ),
       model
     );

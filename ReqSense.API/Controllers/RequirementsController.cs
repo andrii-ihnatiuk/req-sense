@@ -35,6 +35,13 @@ public class RequirementsController(
         return Ok(new { id });
     }
 
+    [HttpPut("{requirementId:long}")]
+    public async Task<IActionResult> UpdateRequirement([FromBody] UpdateRequirementDto dto)
+    {
+        await requirementService.UpdateRequirementAsync(dto);
+        return NoContent();
+    }
+
     [HttpDelete("{requirementId:long}")]
     public async Task<IActionResult> DeleteRequirement([FromRoute] long requirementId)
     {

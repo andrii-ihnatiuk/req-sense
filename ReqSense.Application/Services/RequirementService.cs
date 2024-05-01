@@ -45,6 +45,14 @@ public class RequirementService(
         return requirement.Id;
     }
 
+    public async Task UpdateRequirementAsync(UpdateRequirementDto dto)
+    {
+        var requirement = await dbContext.Requirements.FindAsync(dto.Id);
+        NotFoundException.ThrowIfNull(requirement, $"Requirement with id {dto.Id} was not found!");
+        mapper.Map(dto, requirement);
+        await dbContext.SaveChangesAsync();
+    }
+
     public async Task DeleteRequirementAsync(long requirementId)
     {
         var requirement = await dbContext.Requirements.FindAsync(requirementId);
