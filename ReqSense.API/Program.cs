@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using ReqSense.API.Services;
 using ReqSense.Application;
@@ -6,6 +5,13 @@ using ReqSense.Application.Common.Interfaces;
 using ReqSense.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
+var secretsPath = Environment.GetEnvironmentVariable("REQSENSE_SECRETS_PATH");
+if (secretsPath is null)
+{
+    throw new Exception("Secrets file location was not provided");
+}
+
+builder.Configuration.AddJsonFile(secretsPath);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

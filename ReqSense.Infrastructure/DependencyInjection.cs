@@ -3,10 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using ReqSense.Application.Common.Interfaces;
+using ReqSense.Domain.Options;
 using ReqSense.Infrastructure.Data;
 using ReqSense.Infrastructure.Data.Interceptors;
+using ReqSense.Infrastructure.Gemini;
+using ReqSense.Infrastructure.HttpHandlers;
 using ReqSense.Infrastructure.Identity;
 
 namespace ReqSense.Infrastructure;
@@ -37,6 +41,14 @@ public static class DependencyInjection
             .AddDefaultTokenProviders();
 
         services.AddScoped<IIdentityService, IdentityService>();
+
+        services.Configure<GeminiOptions>(configuration.GetSection("Gemini"));
+        services.AddTransient<GeminiHttpHandler>();
+        services.AddHttpClient<IGeminiClient, GeminiClient>((sp, httpClient) =>
+        {
+            var geminiOptions = sp.GetRequiredService<IOptions<GeminiOptions>>().Value;
+            httpClient.BaseAddress = new Uri(geminiOptions.Url);
+        }).AddHttpMessageHandler<GeminiHttpHandler>();
 
         return services;
     }

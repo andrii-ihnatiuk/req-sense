@@ -26,7 +26,8 @@
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:7250;http://localhost:5235",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "REQSENSE_SECRETS_PATH": "C:\\Users\\andre\\secrets\\reqsense\\appsecrets.json"
       }
     },
     "IIS Express": {
