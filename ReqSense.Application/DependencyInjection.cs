@@ -13,6 +13,7 @@ public static class DependencyInjection
 
         services.AddScoped<IProjectService, ProjectService>();
         services.AddScoped<IRequirementService, RequirementService>();
+        services.AddScoped<IGenerativeAiService, GeminiAiService>();
 
         return services;
     }

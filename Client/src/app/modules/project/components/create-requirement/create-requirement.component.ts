@@ -85,16 +85,16 @@ export class CreateRequirementComponent implements OnInit {
     this.requirementChangeSubject
       .pipe(
         untilDestroyed(this),
-        debounceTime(1500),
+        debounceTime(1800),
         tap(() => (this.isLoading = true)),
         switchMap((requirementText) =>
           this.suggestionService
             .getRequirementQuestions(requirementText)
-            .pipe(catchError((_) => of([])))
+            .pipe(catchError((_) => of({ questions: []})))
         )
       )
-      .subscribe((questions) => {
-        this.questions = questions;
+      .subscribe((response) => {
+        this.questions = response.questions;
         this.isLoading = false;
       });
   }

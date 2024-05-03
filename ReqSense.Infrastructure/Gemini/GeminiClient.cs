@@ -2,6 +2,7 @@
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using ReqSense.Application.Common.DTOs.GeminiAPI.Request;
 using ReqSense.Application.Common.DTOs.GeminiAPI.Response;
 using ReqSense.Application.Common.Exceptions;
 using ReqSense.Application.Common.Interfaces;
@@ -15,15 +16,14 @@ internal sealed class GeminiClient(HttpClient httpClient)
     {
         ContractResolver = new DefaultContractResolver
         {
-            NamingStrategy = new SnakeCaseNamingStrategy()
+            NamingStrategy = new CamelCaseNamingStrategy()
         }
     };
 
-    public async Task<string> GenerateContentAsync(string prompt, CancellationToken cancellationToken = default)
+    public async Task<T> GenerateContentAsync<T>(GeminiRequest request, CancellationToken cancellationToken = default)
     {
-        var requestBody = GeminiRequestFactory.CreateRequest(prompt);
         var content = new StringContent(
-            JsonConvert.SerializeObject(requestBody, Formatting.None, _serializerSettings),
+            JsonConvert.SerializeObject(request, Formatting.None, _serializerSettings),
             Encoding.UTF8,
             MediaTypeNames.Application.Json);
 
@@ -33,8 +33,9 @@ internal sealed class GeminiClient(HttpClient httpClient)
         var responseBody = await response.Content.ReadAsStringAsync(cancellationToken);
         var geminiResponse = JsonConvert.DeserializeObject<GeminiResponseDto>(responseBody);
         GeminiException.ThrowIfNull(geminiResponse, "Could not deserialize response body.");
-        var geminiResponseText = geminiResponse!.Candidates[0].Content.Parts[0].Text;
+        var resultObject = JsonConvert.DeserializeObject<T>(geminiResponse!.Candidates[0].Content.Parts[0].Text);
+        GeminiException.ThrowIfNull(resultObject, "Could not deserialize response text to the given type.");
 
-        return geminiResponseText;
+        return resultObject!;
     }
 }

@@ -15,7 +15,7 @@ export class SuggestionService extends BaseService {
   getRequirementQuestions(requirement: string): Observable<any> {
     return this.getWithParams(
       appConfiguration.getSuggestionForRequirementApiUrl,
-      new HttpParams({ fromObject: { requirement } }),
+      new HttpParams({ fromObject: { requirementText: requirement } }),
       true
     );
   }

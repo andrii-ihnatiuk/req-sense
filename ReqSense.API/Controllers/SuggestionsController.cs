@@ -1,22 +1,19 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ReqSense.Application.Common.Interfaces;
 
 namespace ReqSense.API.Controllers;
 
 [Authorize]
 [ApiController]
 [Route("[controller]")]
-public class SuggestionsController : ControllerBase
+public class SuggestionsController(IGenerativeAiService genAiService) : ControllerBase
 {
-    public SuggestionsController()
-    {
-    }
-
     [HttpGet("requirement/questions")]
-    public async Task<IActionResult> GetQuestionsForRequirement()
+    public async Task<IActionResult> GetQuestionsForRequirement([FromQuery] string requirementText)
     {
-        var questions = new List<string> { "Can user like others' comments?", "Can user reply to other comments?" };
-        await Task.Delay(2000);
+        // var questions = new List<string> { "Can user like others' comments?", "Can user reply to other comments?" };
+        var questions = await genAiService.GenerateQuestionsForRequirementAsync(requirementText);
         return Ok(questions);
     }
 }
