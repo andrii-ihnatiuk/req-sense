@@ -4,5 +4,5 @@ namespace ReqSense.Application.Common.Interfaces;
 
 public interface IGenerativeAiService
 {
-    Task<RequirementQuestions> GenerateQuestionsForRequirementAsync(string requirementText);
+    Task<RequirementQuestions> GenerateQuestionsForRequirementAsync(string requirementText, long projectId);
 }

@@ -12,10 +12,10 @@ export class SuggestionService extends BaseService {
     super(http);
   }
 
-  getRequirementQuestions(requirement: string): Observable<any> {
+  getRequirementQuestions(requirement: string, projectId: string): Observable<any> {
     return this.getWithParams(
       appConfiguration.getSuggestionForRequirementApiUrl,
-      new HttpParams({ fromObject: { requirementText: requirement } }),
+      new HttpParams({ fromObject: { projectId, requirementText: requirement } }),
       true
     );
   }

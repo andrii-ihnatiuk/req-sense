@@ -10,10 +10,9 @@ namespace ReqSense.API.Controllers;
 public class SuggestionsController(IGenerativeAiService genAiService) : ControllerBase
 {
     [HttpGet("requirement/questions")]
-    public async Task<IActionResult> GetQuestionsForRequirement([FromQuery] string requirementText)
+    public async Task<IActionResult> GetQuestionsForRequirement([FromQuery] string requirementText, [FromQuery] long projectId)
     {
-        // var questions = new List<string> { "Can user like others' comments?", "Can user reply to other comments?" };
-        var questions = await genAiService.GenerateQuestionsForRequirementAsync(requirementText);
+        var questions = await genAiService.GenerateQuestionsForRequirementAsync(requirementText, projectId);
         return Ok(questions);
     }
 }

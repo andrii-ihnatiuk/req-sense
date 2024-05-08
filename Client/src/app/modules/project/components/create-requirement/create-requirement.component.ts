@@ -89,7 +89,7 @@ export class CreateRequirementComponent implements OnInit {
         tap(() => (this.isLoading = true)),
         switchMap((requirementText) =>
           this.suggestionService
-            .getRequirementQuestions(requirementText)
+            .getRequirementQuestions(requirementText, this.projectId, )
             .pipe(catchError((_) => of({ questions: []})))
         )
       )
