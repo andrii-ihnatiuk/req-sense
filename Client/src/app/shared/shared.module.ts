@@ -21,6 +21,8 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { AccountExpandableComponent } from "./components/account-expandable/account-expandable.component";
 import { SnackbarComponent } from "./components/snackbar/snackbar.component";
+import { MatTooltipModule } from "@angular/material/tooltip";
+import { AiButtonComponent } from "./components/ai-button/ai-button.component";
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { SnackbarComponent } from "./components/snackbar/snackbar.component";
     SelectComponent,
     AccountExpandableComponent,
     SnackbarComponent,
+    AiButtonComponent
   ],
   imports: [
     CommonModule,
@@ -48,6 +51,7 @@ import { SnackbarComponent } from "./components/snackbar/snackbar.component";
     MatDialogModule,
     MatSlideToggleModule,
     MatProgressBarModule,
+    MatTooltipModule
   ],
   exports: [
     RouterModule,
@@ -70,6 +74,8 @@ import { SnackbarComponent } from "./components/snackbar/snackbar.component";
     MatSnackBarModule,
     MatSlideToggleModule,
     MatProgressBarModule,
+    MatTooltipModule,
+    AiButtonComponent
   ],
 })
 export class SharedModule {}

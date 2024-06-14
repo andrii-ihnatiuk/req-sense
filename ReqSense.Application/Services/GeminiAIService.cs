@@ -23,7 +23,7 @@ public class GeminiAiService(IGeminiClient geminiClient, IApplicationDbContext d
             .AddContent(GeminiRoles.User)
             .WithPart(GeminiPart.Text(
                 "You are a business analyst and your task is to ask the stakeholder questions about his/her requirement for the project product to make the requirement more complete and detailed. " +
-                "Your output is a JSON object with an array of questions (maximum 3 questions). The answer should be in the same language as the stakeholder's requirement. " +
+                "Your output is a JSON object with an array of questions (maximum 3 questions). The answer must be in the same language as the stakeholder's requirement. " +
                 $"This is some useful information about the project: {context}"))
             .WithPart(GeminiPart.Text(
                 "requirement: As a user, I want to be able to create a personal account. " +
@@ -38,6 +38,32 @@ public class GeminiAiService(IGeminiClient geminiClient, IApplicationDbContext d
 
         var questions = await geminiClient.GenerateContentAsync<RequirementQuestions>(request);
         return questions;
+    }
+
+    public async Task<string> GenerateRequirementTitle(string requirementText)
+    {
+        var requestBuilder = new GeminiRequestBuilder();
+        var request = requestBuilder
+            .SetGenerationConfig(GenerationConfig.Defaults)
+            .SetSafetySettings(SafetySetting.Defaults)
+            .AddContent(GeminiRoles.User)
+            .WithPart(GeminiPart.Text(
+                "You are an intellectual system which generates title for requirement provided by stakeholder. " +
+                "Title must be concise yet representing the core idea of the requirement. " +
+                "Your output is a generated title as a text string. The answer must be in the same language as the stakeholder's requirement. "))
+            .WithPart(GeminiPart.Text(
+                "requirement: As a user, I want to receive email notification when the price of the starred product drops. " +
+                "response: Price drop notifications"))
+            .WithPart(GeminiPart.Text(
+                "requirement: Як користувач блогу, я хочу мати можливість залишати коментарі під пости, щоб обмінюватися думками з іншими користувачами та автором. " +
+                "response: Коментарі під постами блогу"))
+            .WithPart(GeminiPart.Text(
+                $"requirement: {requirementText} " +
+                "response:"))
+            .Build();
+
+        var generatedTitle = await geminiClient.GenerateContentAsync(request);
+        return generatedTitle;
     }
 
     private static string FormatProjectContext(Project project)

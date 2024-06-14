@@ -5,10 +5,13 @@
   <div class="content-left">
     <form *ngIf="form" class="form" [formGroup]="form">
       <div class="form__header">
-        <mat-form-field appearance="outline" class="form__requirement-title">
-          <mat-label>Requirement title</mat-label>
-          <input matInput type="text" [formControl]="getControl('title')" placeholder="Maximum 30 symbols" />
-        </mat-form-field>
+        <div class="header__left">
+          <mat-form-field appearance="outline" class="form__requirement-title">
+            <mat-label>Requirement title</mat-label>
+            <input matInput type="text" [formControl]="getControl('title')" placeholder="Maximum 50 symbols" />
+          </mat-form-field>
+          <app-ai-button matTooltip="Generate title" [matTooltipPosition]="'above'" (click)="onGenerateTitle()"></app-ai-button>
+        </div>
         <div class="form__toggle-wrapper">
           <mat-slide-toggle
             color="primary"
@@ -23,7 +26,7 @@
         <mat-label>Enter requirement</mat-label>
         <textarea
           matInput
-          (input)="onRequirementChanged($event)"
+          (input)="onRequirementChanged()"
           [formControl]="getControl('description')"
           placeholder="You can enter up to 4000 symbols"
         ></textarea>

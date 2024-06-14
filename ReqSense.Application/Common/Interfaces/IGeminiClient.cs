@@ -5,4 +5,6 @@ namespace ReqSense.Application.Common.Interfaces;
 public interface IGeminiClient
 {
     Task<T> GenerateContentAsync<T>(GeminiRequest request, CancellationToken cancellationToken = default);
+
+    Task<string> GenerateContentAsync(GeminiRequest request, CancellationToken cancellationToken = default);
 }

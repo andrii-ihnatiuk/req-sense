@@ -89,8 +89,8 @@ export class CreateRequirementComponent implements OnInit {
         tap(() => (this.isLoading = true)),
         switchMap((requirementText) =>
           this.suggestionService
-            .getRequirementQuestions(requirementText, this.projectId, )
-            .pipe(catchError((_) => of({ questions: []})))
+            .getRequirementQuestions(requirementText, this.projectId)
+            .pipe(catchError((_) => of({ questions: [] })))
         )
       )
       .subscribe((response) => {
@@ -107,9 +107,14 @@ export class CreateRequirementComponent implements OnInit {
     this.enableAiHelp = toggle.checked;
   }
 
-  onRequirementChanged(event: any): void {
-    if (this.enableAiHelp && event.target.value.length > 0) {
-      this.requirementChangeSubject.next(event.target.value);
+  onRequirementChanged(): void {
+    if (!this.enableAiHelp) {
+      return;
+    }
+
+    const control = this.getControl("description");
+    if (control.valid) {
+      this.requirementChangeSubject.next(control.value.trim());
     }
   }
 
@@ -134,9 +139,25 @@ export class CreateRequirementComponent implements OnInit {
       });
   }
 
+  onGenerateTitle(): void {
+    const control = this.getControl("description");
+    if (!control.valid) {
+      alert("Enter a valid requirement description first");
+      return;
+    }
+
+    this.suggestionService
+      .getSuggestedRequirementTitle(control.value)
+      .subscribe((response: any) => {
+        if (!!response.title) {
+          this.getControl("title").setValue(response.title);
+        }
+      });
+  }
+
   private buildForm(): void {
     this.form = this.fb.group({
-      title: ["", [Validators.required, Validators.maxLength(30)]],
+      title: ["", [Validators.required, Validators.maxLength(50)]],
       description: ["", [Validators.required, Validators.maxLength(4000)]],
     });
   }

@@ -20,7 +20,7 @@ internal sealed class GeminiClient(HttpClient httpClient)
         }
     };
 
-    public async Task<T> GenerateContentAsync<T>(GeminiRequest request, CancellationToken cancellationToken = default)
+    public async Task<string> GenerateContentAsync(GeminiRequest request, CancellationToken cancellationToken = default)
     {
         var content = new StringContent(
             JsonConvert.SerializeObject(request, Formatting.None, _serializerSettings),
@@ -33,9 +33,15 @@ internal sealed class GeminiClient(HttpClient httpClient)
         var responseBody = await response.Content.ReadAsStringAsync(cancellationToken);
         var geminiResponse = JsonConvert.DeserializeObject<GeminiResponseDto>(responseBody);
         GeminiException.ThrowIfNull(geminiResponse, "Could not deserialize response body.");
-        var resultObject = JsonConvert.DeserializeObject<T>(geminiResponse!.Candidates[0].Content.Parts[0].Text);
-        GeminiException.ThrowIfNull(resultObject, "Could not deserialize response text to the given type.");
 
+        return geminiResponse!.Candidates[0].Content.Parts[0].Text;
+    }
+
+    public async Task<T> GenerateContentAsync<T>(GeminiRequest request, CancellationToken cancellationToken = default)
+    {
+        var geminiResponse = await GenerateContentAsync(request, cancellationToken);
+        var resultObject = JsonConvert.DeserializeObject<T>(geminiResponse);
+        GeminiException.ThrowIfNull(resultObject, "Could not deserialize response text to the given type.");
         return resultObject!;
     }
 }

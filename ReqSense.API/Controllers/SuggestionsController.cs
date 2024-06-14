@@ -15,4 +15,11 @@ public class SuggestionsController(IGenerativeAiService genAiService) : Controll
         var questions = await genAiService.GenerateQuestionsForRequirementAsync(requirementText, projectId);
         return Ok(questions);
     }
+
+    [HttpGet("requirement/title")]
+    public async Task<IActionResult> GetSuggestedRequirementTitle([FromQuery] string requirementText)
+    {
+        var title = await genAiService.GenerateRequirementTitle(requirementText);
+        return Ok(new {title});
+    }
 }

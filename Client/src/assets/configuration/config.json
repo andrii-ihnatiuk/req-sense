@@ -18,5 +18,6 @@
   "updateRequirementApiUrl": "/requirements/{id}",
   "deleteRequirementApiUrl": "/requirements/{id}",
 
-  "getSuggestionForRequirementApiUrl": "/suggestions/requirement/questions"
+  "getQuestionsForRequirementApiUrl": "/suggestions/requirement/questions",
+  "getSuggestedRequirementTitleApiUrl": "/suggestions/requirement/title"
 }

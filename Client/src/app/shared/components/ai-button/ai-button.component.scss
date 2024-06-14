@@ -1,0 +1,25 @@
+:host {
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+  border-radius: 15%;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--secondary);
+
+    .icon__path {
+      fill: var(--primary);
+    }
+  }
+}
+
+svg {
+  height: 100%;
+  width: 100%;
+
+  .icon__path {
+    fill: var(--text-dimmed);
+    transition: all .2s ease-out;
+  }
+}
