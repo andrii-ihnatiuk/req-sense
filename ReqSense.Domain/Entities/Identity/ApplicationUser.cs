@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using ReqSense.Domain.Common;
-using ReqSense.Domain.Entities;
 
-namespace ReqSense.Infrastructure.Identity;
+namespace ReqSense.Domain.Entities.Identity;
 
 public class ApplicationUser : IdentityUser, IApplicationUser
 {

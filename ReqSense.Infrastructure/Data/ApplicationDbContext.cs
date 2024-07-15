@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ReqSense.Application.Common.Interfaces;
 using ReqSense.Domain.Entities;
-using ReqSense.Infrastructure.Identity;
+using ReqSense.Domain.Entities.Identity;
 
 namespace ReqSense.Infrastructure.Data;
 

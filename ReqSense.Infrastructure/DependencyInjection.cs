@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using ReqSense.Application.Common.Interfaces;
+using ReqSense.Domain.Entities.Identity;
 using ReqSense.Domain.Options;
 using ReqSense.Infrastructure.Data;
 using ReqSense.Infrastructure.Data.Interceptors;
@@ -39,6 +40,15 @@ public static class DependencyInjection
         services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
+        services.Configure<IdentityOptions>(options =>
+        {
+            options.User.RequireUniqueEmail = true;
+            options.Password.RequireDigit = false;
+            options.Password.RequireLowercase = false;
+            options.Password.RequireUppercase = false;
+            options.Password.RequireNonAlphanumeric = false;
+            options.Password.RequiredLength = 5;
+        });
 
         services.AddScoped<IIdentityService, IdentityService>();
 

@@ -1,5 +1,5 @@
 ﻿using ReqSense.Domain.Common;
-using ReqSense.Infrastructure.Identity;
+using ReqSense.Domain.Entities.Identity;
 
 namespace ReqSense.Domain.Entities;
 

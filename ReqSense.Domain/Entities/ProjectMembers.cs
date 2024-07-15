@@ -1,5 +1,5 @@
 ﻿using ReqSense.Domain.Constants;
-using ReqSense.Infrastructure.Identity;
+using ReqSense.Domain.Entities.Identity;
 
 namespace ReqSense.Domain.Entities;
 

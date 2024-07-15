@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ReqSense.Application.Common.DTOs.User.Response;
-using ReqSense.Infrastructure.Identity;
+using ReqSense.Domain.Entities.Identity;
 
 namespace ReqSense.Application.Common.MappingProfiles;
 

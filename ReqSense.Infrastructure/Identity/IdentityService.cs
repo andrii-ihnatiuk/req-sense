@@ -4,6 +4,7 @@ using ReqSense.Application.Common.DTOs.User.Response;
 using ReqSense.Application.Common.Exceptions;
 using ReqSense.Application.Common.Interfaces;
 using ReqSense.Domain.Common;
+using ReqSense.Domain.Entities.Identity;
 
 namespace ReqSense.Infrastructure.Identity;
 
