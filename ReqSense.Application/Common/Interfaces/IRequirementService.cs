@@ -7,11 +7,11 @@ public interface IRequirementService
 {
     Task<IEnumerable<RequirementBriefDto>> GetProjectRequirementsAsync(long projectId);
 
-    Task<RequirementFullDto> GetRequirementByIdAsync(long requirementId);
+    Task<Result<RequirementFullDto>> GetRequirementByIdAsync(long requirementId);
 
-    Task<long> CreateRequirementAsync(CreateRequirementDto dto, long projectId);
+    Task<Result<long>> CreateRequirementAsync(CreateRequirementDto dto, long projectId);
 
-    Task UpdateRequirementAsync(UpdateRequirementDto dto);
+    Task<Result> UpdateRequirementAsync(UpdateRequirementDto dto);
 
-    Task DeleteRequirementAsync(long requirementId);
+    Task<Result> DeleteRequirementAsync(long requirementId);
 }

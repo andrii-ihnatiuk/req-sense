@@ -7,15 +7,15 @@ public interface IProjectService
 {
     Task<IEnumerable<ProjectListItemDto>> GetUserProjectsAsync(string userId, string filter);
 
-    Task<ProjectFullDto> GetProjectAsync(long id);
+    Task<Result<ProjectFullDto>> GetProjectAsync(long id);
 
     Task<ProjectInsightsDto> GetProjectInsightsAsync(long id);
 
     Task<IEnumerable<ProjectMemberDto>> GetProjectMembersAsync(long id, int? limit);
 
-    Task<long> CreateProjectAsync(CreateProjectDto dto);
+    Task<Result<long>> CreateProjectAsync(CreateProjectDto dto);
 
-    Task UpdateProjectAsync(UpdateProjectDto dto);
+    Task<Result> UpdateProjectAsync(UpdateProjectDto dto);
 
-    Task DeleteProjectAsync(long projectId);
+    Task<Result> DeleteProjectAsync(long projectId);
 }

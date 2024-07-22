@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using ReqSense.Application.Common.DTOs.User.Response;
-using ReqSense.Application.Common.Exceptions;
+using ReqSense.Application.Common.Errors;
 using ReqSense.Application.Common.Interfaces;
 using ReqSense.Domain.Common;
+using ReqSense.Domain.Common.Interfaces;
 using ReqSense.Domain.Entities.Identity;
 
 namespace ReqSense.Infrastructure.Identity;
@@ -24,14 +25,18 @@ public class IdentityService : IIdentityService
         _mapper = mapper;
     }
 
-    public async Task<UserInfoDto> GetUserInfoAsync(string userId)
+    public async Task<Result<UserInfoDto>> GetUserInfoAsync(string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);
-        NotFoundException.ThrowIfNull(user, $"User with id {userId} was not found.");
-        return _mapper.Map<UserInfoDto>(user);
+        if (user is null)
+        {
+            return Result.Fail<UserInfoDto>(UserErrors.NotFound(userId));
+        }
+
+        return Result.Ok(_mapper.Map<UserInfoDto>(user));
     }
 
-    public async Task<string> CreateUserAsync(string userName, string email, string password)
+    public async Task<Result<string>> CreateUserAsync(string userName, string email, string password)
     {
         var user = new ApplicationUser
         {
@@ -39,10 +44,10 @@ public class IdentityService : IIdentityService
             Email = email
         };
 
-        await _userManager.CreateAsync(user, password)
-            .ThrowIfFailedAsync();
-
-        return user.Id;
+        var identityResult = await _userManager.CreateAsync(user, password);
+        return identityResult.Succeeded
+            ? Result.Ok(user.Id)
+            : Result.Fail<string>(UserErrors.Validation(identityResult.Errors.Select(e => e.ToResultError())));
     }
 
     public void CreateUserAsync(string userName, string password)
@@ -55,16 +60,16 @@ public class IdentityService : IIdentityService
         throw new NotImplementedException();
     }
 
-    public async Task<bool> AuthenticateUserAsync(string email, string password)
+    public async Task<Result> AuthenticateUserAsync(string email, string password)
     {
         var user = await _userManager.FindByEmailAsync(email);
         if (user is null)
         {
-            throw new IdentityException("Either the email or password is incorrect.");
+            return Result.Fail(UserErrors.InvalidCredentials());
         }
 
         var result = await _signInManager.PasswordSignInAsync(user, password, true, false);
-        return result.Succeeded;
+        return result.Succeeded ? Result.Ok() : Result.Fail(UserErrors.InvalidCredentials());
     }
 
     public Task LogoutAsync()

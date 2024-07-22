@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using ReqSense.Domain.Common;
+using ReqSense.Domain.Common.Interfaces;
 
 namespace ReqSense.Domain.Entities.Identity;
 

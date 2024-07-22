@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ReqSense.API.Extensions;
 using ReqSense.Application.Common.DTOs.Project.Request;
 using ReqSense.Application.Common.Interfaces;
 
@@ -27,8 +28,8 @@ public class ProjectsController : ControllerBase
     [HttpGet("{id:long}")]
     public async Task<IActionResult> GetProjectById([FromRoute] long id)
     {
-        var project = await _projectService.GetProjectAsync(id);
-        return Ok(project);
+        var projectResult = await _projectService.GetProjectAsync(id);
+        return projectResult.Match(onSuccess: Ok, onFail: this.FromError);
     }
 
     [HttpGet("{id:long}/insights")]
@@ -41,21 +42,23 @@ public class ProjectsController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateProject([FromBody] CreateProjectDto projectDto)
     {
-        var id = await _projectService.CreateProjectAsync(projectDto);
-        return CreatedAtAction(nameof(GetProjectById), new { id }, new { id });
+        var result = await _projectService.CreateProjectAsync(projectDto);
+        return result.Match(
+            onSuccess: id => CreatedAtAction(nameof(GetProjectById), new { id }, new { id }),
+            onFail: this.FromError);
     }
 
     [HttpPut("{id:long}")]
     public async Task<IActionResult> UpdateProject([FromBody] UpdateProjectDto projectDto)
     {
-        await _projectService.UpdateProjectAsync(projectDto);
-        return NoContent();
+        var updateResult = await _projectService.UpdateProjectAsync(projectDto);
+        return updateResult.Match(onSuccess: NoContent, onFail: this.FromError);
     }
 
     [HttpDelete("{id:long}")]
     public async Task<IActionResult> DeleteProject([FromRoute] long id)
     {
-        await _projectService.DeleteProjectAsync(id);
-        return NoContent();
+        var deleteResult = await _projectService.DeleteProjectAsync(id);
+        return deleteResult.Match(onSuccess: NoContent, onFail: this.FromError);
     }
 }

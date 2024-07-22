@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ReqSense.Application.Common.DTOs.Project.Request;
 using ReqSense.Application.Common.DTOs.Project.Response;
-using ReqSense.Application.Common.Exceptions;
+using ReqSense.Application.Common.Errors;
 using ReqSense.Application.Common.Interfaces;
 using ReqSense.Domain.Constants;
 using ReqSense.Domain.Entities;
@@ -45,15 +45,15 @@ public class ProjectService : IProjectService
         return projects;
     }
 
-    public async Task<ProjectFullDto> GetProjectAsync(long id)
+    public async Task<Result<ProjectFullDto>> GetProjectAsync(long id)
     {
         var project = await _dbContext.Projects.FindAsync(id);
         if (project is null)
         {
-            throw new NotFoundException($"Project with id {id} was not found.");
+            return Result.Fail<ProjectFullDto>(ProjectErrors.NotFound(id));
         }
 
-        return _mapper.Map<ProjectFullDto>(project);
+        return Result.Ok(_mapper.Map<ProjectFullDto>(project));
     }
 
     public async Task<ProjectInsightsDto> GetProjectInsightsAsync(long id)
@@ -82,37 +82,49 @@ public class ProjectService : IProjectService
         return members;
     }
 
-    public async Task<long> CreateProjectAsync(CreateProjectDto dto)
+    public async Task<Result<long>> CreateProjectAsync(CreateProjectDto dto)
     {
-        var project = _mapper.Map<Project>(dto);
         if (_currentUser.Id is null)
         {
-            throw new IdentityException("You must sign in to perform this action.");
+            return Result.Fail<long>(UserErrors.Unauthorized());
         }
 
+        var existingProject = await _dbContext.Projects.FirstOrDefaultAsync(p => p.Title.Equals(dto.Title));
+        if (existingProject is not null)
+        {
+            return Result.Fail<long>(ProjectErrors.DuplicateTitle(dto.Title));
+        }
+
+        var project = _mapper.Map<Project>(dto);
         project.Members.Add(ProjectMembers.Owner(_currentUser.Id));
         _dbContext.Projects.Add(project);
         await _dbContext.SaveChangesAsync();
-        return project.Id;
+        return Result.Ok(project.Id);
     }
 
-    public async Task UpdateProjectAsync(UpdateProjectDto dto)
+    public async Task<Result> UpdateProjectAsync(UpdateProjectDto dto)
     {
         var project = await _dbContext.Projects.FindAsync(dto.Id);
-        NotFoundException.ThrowIfNull(project, $"Project with id {dto.Id} was not found.");
+        if (project is null)
+        {
+            return Result.Fail(ProjectErrors.NotFound(dto.Id));
+        }
 
         _mapper.Map(dto, project);
         await _dbContext.SaveChangesAsync();
+        return Result.Ok();
     }
 
-    public async Task DeleteProjectAsync(long projectId)
+    public async Task<Result> DeleteProjectAsync(long projectId)
     {
         var project = await _dbContext.Projects.FindAsync(projectId);
-        if (project is not null)
+        if (project is null)
         {
-            _dbContext.Projects.Remove(project);
+            return Result.Fail(ProjectErrors.NotFound(projectId));
         }
 
+        _dbContext.Projects.Remove(project);
         await _dbContext.SaveChangesAsync();
+        return Result.Ok();
     }
 }

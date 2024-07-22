@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ReqSense.API.Extensions;
 using ReqSense.Application.Common.DTOs.User.Request;
 using ReqSense.Application.Common.Interfaces;
 
@@ -22,27 +23,30 @@ public class AccountController : ControllerBase
     [HttpGet("info")]
     public async Task<IActionResult> GetCurrentUserInfo()
     {
-        var info = await _identityService.GetUserInfoAsync(_currentUser.Id!);
-        return Ok(info);
+        var infoResult = await _identityService.GetUserInfoAsync(_currentUser.Id!);
+        return infoResult.Match(onSuccess: Ok, onFail: this.FromError);
     }
 
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegistrationDto dto)
     {
-        var userId = await _identityService.CreateUserAsync(dto.Name, dto.Email, dto.Password);
-        return Ok(new { id = userId });
+        var result = await _identityService.CreateUserAsync(dto.Name, dto.Email, dto.Password);
+        return result.Match(
+            onSuccess: id => Ok(new { id }),
+            onFail: this.FromError);
     }
 
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginDto dto)
     {
-        if (!await _identityService.AuthenticateUserAsync(dto.Email, dto.Password))
+        var authResult = await _identityService.AuthenticateUserAsync(dto.Email, dto.Password);
+        if (authResult.IsFailure)
         {
-            return BadRequest();
+            return this.FromError(authResult.Error);
         }
 
-        var info = await _identityService.GetUserInfoAsync(_currentUser.Id!);
-        return Ok(info);
+        var infoResult = await _identityService.GetUserInfoAsync(_currentUser.Id!);
+        return infoResult.Match(onSuccess: Ok, onFail: this.FromError);
     }
 
     [HttpPost("logout")]

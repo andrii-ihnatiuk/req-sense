@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ReqSense.API.Extensions;
 using ReqSense.Application.Common.DTOs.Requirement.Request;
 using ReqSense.Application.Common.Interfaces;
 
@@ -24,28 +25,30 @@ public class RequirementsController(
     public async Task<IActionResult> GetRequirementById([FromRoute] long requirementId)
     {
         var requirement = await requirementService.GetRequirementByIdAsync(requirementId);
-        return Ok(requirement);
+        return requirement.Match(onSuccess: Ok, onFail: this.FromError);
     }
 
     [HttpPost]
     [Route("/projects/{projectId:long}/requirements")]
     public async Task<IActionResult> CreateRequirement([FromRoute] long projectId, [FromBody] CreateRequirementDto dto)
     {
-        var id = await requirementService.CreateRequirementAsync(dto, projectId);
-        return Ok(new { id });
+        var result = await requirementService.CreateRequirementAsync(dto, projectId);
+        return result.Match(
+            onSuccess: id => Ok(new { id }),
+            onFail: this.FromError);
     }
 
     [HttpPut("{requirementId:long}")]
     public async Task<IActionResult> UpdateRequirement([FromBody] UpdateRequirementDto dto)
     {
-        await requirementService.UpdateRequirementAsync(dto);
-        return NoContent();
+        var updateResult = await requirementService.UpdateRequirementAsync(dto);
+        return updateResult.Match(onSuccess: NoContent, onFail: this.FromError);
     }
 
     [HttpDelete("{requirementId:long}")]
     public async Task<IActionResult> DeleteRequirement([FromRoute] long requirementId)
     {
-        await requirementService.DeleteRequirementAsync(requirementId);
-        return NoContent();
+        var deleteResult = await requirementService.DeleteRequirementAsync(requirementId);
+        return deleteResult.Match(onSuccess: NoContent, onFail: this.FromError);
     }
 }

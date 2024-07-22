@@ -1,19 +1,25 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ReqSense.Application.Common.Exceptions;
+using ReqSense.Application.Common.Errors;
 using ReqSense.Application.Common.Interfaces;
 using ReqSense.Application.Common.Models;
 using ReqSense.Application.Common.Models.Gemini;
+using ReqSense.Domain.Common;
 using ReqSense.Domain.Constants;
 using ReqSense.Domain.Entities;
+using Result = ReqSense.Domain.Common.Result;
 
 namespace ReqSense.Application.Services;
 
 public class GeminiAiService(IGeminiClient geminiClient, IApplicationDbContext dbContext) : IGenerativeAiService
 {
-    public async Task<RequirementQuestions> GenerateQuestionsForRequirementAsync(string requirementText, long projectId)
+    public async Task<Result<RequirementQuestions>> GenerateQuestionsForRequirementAsync(string requirementText, long projectId)
     {
         var project = await dbContext.Projects.FirstOrDefaultAsync(e => e.Id.Equals(projectId));
-        NotFoundException.ThrowIfNull(project, $"The project with id {projectId} was not found.");
+        if (project is null)
+        {
+            return Result.Fail<RequirementQuestions>(ProjectErrors.NotFound(projectId));
+        }
+
         var context = FormatProjectContext(project!);
 
         var requestBuilder = new GeminiRequestBuilder();
@@ -37,7 +43,7 @@ public class GeminiAiService(IGeminiClient geminiClient, IApplicationDbContext d
             .Build();
 
         var questions = await geminiClient.GenerateContentAsync<RequirementQuestions>(request);
-        return questions;
+        return Result.Ok(questions);
     }
 
     public async Task<string> GenerateRequirementTitle(string requirementText)

@@ -1,6 +1,6 @@
 ﻿using ReqSense.Domain.Entities;
 
-namespace ReqSense.Domain.Common;
+namespace ReqSense.Domain.Common.Interfaces;
 
 public interface IApplicationUser
 {
