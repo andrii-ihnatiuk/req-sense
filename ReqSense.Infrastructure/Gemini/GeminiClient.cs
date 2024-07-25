@@ -2,10 +2,10 @@
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using ReqSense.Application.Common.DTOs.GeminiAPI.Request;
-using ReqSense.Application.Common.DTOs.GeminiAPI.Response;
 using ReqSense.Application.Common.Exceptions;
-using ReqSense.Application.Common.Interfaces;
+using ReqSense.Infrastructure.Gemini.DTOs.Request;
+using ReqSense.Infrastructure.Gemini.DTOs.Response;
+using ReqSense.Infrastructure.Gemini.Interfaces;
 
 namespace ReqSense.Infrastructure.Gemini;
 

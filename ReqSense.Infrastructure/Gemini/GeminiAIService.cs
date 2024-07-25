@@ -2,13 +2,13 @@
 using ReqSense.Application.Common.Errors;
 using ReqSense.Application.Common.Interfaces;
 using ReqSense.Application.Common.Models;
-using ReqSense.Application.Common.Models.Gemini;
 using ReqSense.Domain.Common;
 using ReqSense.Domain.Constants;
 using ReqSense.Domain.Entities;
-using Result = ReqSense.Domain.Common.Result;
+using ReqSense.Infrastructure.Gemini.Interfaces;
+using ReqSense.Infrastructure.Gemini.Models;
 
-namespace ReqSense.Application.Services;
+namespace ReqSense.Infrastructure.Gemini;
 
 public class GeminiAiService(IGeminiClient geminiClient, IApplicationDbContext dbContext) : IGenerativeAiService
 {

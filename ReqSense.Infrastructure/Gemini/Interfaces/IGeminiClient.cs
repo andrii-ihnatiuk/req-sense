@@ -1,6 +1,6 @@
-﻿using ReqSense.Application.Common.DTOs.GeminiAPI.Request;
+﻿using ReqSense.Infrastructure.Gemini.DTOs.Request;
 
-namespace ReqSense.Application.Common.Interfaces;
+namespace ReqSense.Infrastructure.Gemini.Interfaces;
 
 public interface IGeminiClient
 {

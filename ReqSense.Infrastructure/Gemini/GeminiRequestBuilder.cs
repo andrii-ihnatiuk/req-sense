@@ -1,8 +1,8 @@
-﻿using ReqSense.Application.Common.DTOs.GeminiAPI.Request;
-using ReqSense.Application.Common.Models.Gemini;
-using ReqSense.Domain.Constants;
+﻿using ReqSense.Domain.Constants;
+using ReqSense.Infrastructure.Gemini.DTOs.Request;
+using ReqSense.Infrastructure.Gemini.Models;
 
-namespace ReqSense.Application.Services;
+namespace ReqSense.Infrastructure.Gemini;
 
 public class GeminiRequestBuilder
 {

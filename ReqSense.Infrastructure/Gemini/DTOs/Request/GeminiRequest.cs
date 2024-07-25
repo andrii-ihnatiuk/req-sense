@@ -1,6 +1,6 @@
-﻿using ReqSense.Application.Common.Models.Gemini;
+﻿using ReqSense.Infrastructure.Gemini.Models;
 
-namespace ReqSense.Application.Common.DTOs.GeminiAPI.Request;
+namespace ReqSense.Infrastructure.Gemini.DTOs.Request;
 
 public class GeminiRequest
 {

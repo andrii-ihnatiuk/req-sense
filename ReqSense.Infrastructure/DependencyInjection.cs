@@ -11,6 +11,7 @@ using ReqSense.Domain.Options;
 using ReqSense.Infrastructure.Data;
 using ReqSense.Infrastructure.Data.Interceptors;
 using ReqSense.Infrastructure.Gemini;
+using ReqSense.Infrastructure.Gemini.Interfaces;
 using ReqSense.Infrastructure.HttpHandlers;
 using ReqSense.Infrastructure.Identity;
 
@@ -52,6 +53,7 @@ public static class DependencyInjection
 
         services.AddScoped<IIdentityService, IdentityService>();
 
+        services.AddScoped<IGenerativeAiService, GeminiAiService>();
         services.Configure<GeminiOptions>(configuration.GetSection("Gemini"));
         services.AddTransient<GeminiHttpHandler>();
         services.AddHttpClient<IGeminiClient, GeminiClient>((sp, httpClient) =>

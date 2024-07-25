@@ -1,4 +1,4 @@
-﻿namespace ReqSense.Application.Common.DTOs.GeminiAPI.Response;
+﻿namespace ReqSense.Infrastructure.Gemini.DTOs.Response;
 
 public class Content
 {

@@ -1,4 +1,4 @@
-﻿namespace ReqSense.Application.Common.Models.Gemini;
+﻿namespace ReqSense.Infrastructure.Gemini.Models;
 
 public class GeminiContent
 {
