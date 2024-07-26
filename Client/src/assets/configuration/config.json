@@ -12,7 +12,7 @@
   "updateProjectApiUrl": "/projects/{id}",
   "deleteProjectApiUrl": "/projects/{id}",
 
-  "createRequirementApiUrl": "/projects/{id}/requirements",
+  "createRequirementApiUrl": "/requirements",
   "getRequirementsByProjectApiUrl": "/projects/{id}/requirements",
   "getRequirementByIdApiUrl": "/requirements/{id}",
   "updateRequirementApiUrl": "/requirements/{id}",

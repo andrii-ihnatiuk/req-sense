@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using ReqSense.Application.Common.DTOs.Requirement.Request;
-using ReqSense.Application.Common.DTOs.Requirement.Response;
+using ReqSense.Application.Features.Requirements.Commands.Create;
+using ReqSense.Application.Features.Requirements.Commands.Update;
+using ReqSense.Application.Features.Requirements.DTOs;
 using ReqSense.Domain.Constants;
 using ReqSense.Domain.Entities;
 
@@ -16,10 +17,11 @@ public class RequirementProfile : Profile
 
     private void CreateDtoToModelMappings()
     {
-        CreateMap<CreateRequirementDto, Requirement>()
-            .ForMember(dest => dest.Status, opts => opts.MapFrom(_ => RequirementStatuses.Provided));
+        CreateMap<CreateRequirementCommand, Requirement>()
+            .ForMember(dest => dest.Status, opts => opts.MapFrom(_ => RequirementStatuses.Provided))
+            .ForMember(dest => dest.ProjectId, opts => opts.MapFrom(src => src.ProjectId));
 
-        CreateMap<UpdateRequirementDto, Requirement>();
+        CreateMap<UpdateRequirementCommand, Requirement>();
     }
 
     private void CreateModelToDtoMappings()

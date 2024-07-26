@@ -1,7 +1,5 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using ReqSense.Application.Common.Interfaces;
-using ReqSense.Application.Services;
 
 namespace ReqSense.Application;
 
@@ -11,8 +9,7 @@ public static class DependencyInjection
     {
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-        services.AddScoped<IProjectService, ProjectService>();
-        services.AddScoped<IRequirementService, RequirementService>();
+        services.AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
         return services;
     }

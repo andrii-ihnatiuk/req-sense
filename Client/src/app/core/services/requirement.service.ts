@@ -35,10 +35,7 @@ export class RequirementService extends BaseService {
 
   createRequirement(model: Requirement): Observable<{ id: string }> {
     return this.post(
-      appConfiguration.createRequirementApiUrl.replace(
-        environment.routeIdTemplate,
-        model.projectId
-      ),
+      appConfiguration.createRequirementApiUrl,
       model
     );
   }
